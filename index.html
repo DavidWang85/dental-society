@@ -623,6 +623,1701 @@
       height: 1px;
       background: var(--gray-border);
     }
+    /* ── 學術演講 子頁面 ── */
+    .subpage {
+      position: absolute;
+      inset: 0;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      z-index: 20;
+      transform: translateX(100%);
+      transition: transform .28s ease;
+      visibility: hidden;
+    }
+
+    .subpage.open {
+      transform: translateX(0);
+      visibility: visible;
+    }
+
+    .subpage-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 16px 12px;
+      background: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .back-btn {
+      width: 42px;
+      height: 42px;
+      border: 1.5px solid var(--gray-border);
+      background: var(--white);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background .15s;
+    }
+
+    .back-btn:hover {
+      background: var(--blue-soft);
+    }
+
+    .back-btn svg {
+      width: 20px;
+      height: 20px;
+      color: var(--text-main);
+    }
+
+    .subpage-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--blue-dark);
+      letter-spacing: .5px;
+    }
+
+    /* 提示列 */
+    .pg-hint {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--blue-dark);
+      background: var(--blue-soft);
+      border: 1.5px solid #bfdbfe;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+    }
+
+    .pg-hint svg {
+      width: 18px;
+      height: 18px;
+      color: var(--blue-primary);
+      flex-shrink: 0;
+    }
+
+    /* 全選 / 清除 / 確認 */
+    .pg-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .pg-btn {
+      background: var(--white);
+      border: 1.5px solid var(--blue-primary);
+      color: var(--blue-primary);
+      border-radius: 10px;
+      padding: 11px 0;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s, color .15s;
+    }
+
+    .pg-btn:hover {
+      background: var(--blue-light);
+    }
+
+    .pg-btn.primary {
+      background: var(--blue-primary);
+      color: #fff;
+    }
+
+    .pg-btn.primary:hover {
+      background: var(--blue-dark);
+    }
+
+    /* 場地勾選清單 */
+    .pg-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .pg-room {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--white);
+      border: 1.5px solid var(--gray-border);
+      border-radius: var(--radius-sm);
+      padding: 15px 16px;
+      cursor: pointer;
+      transition: border-color .2s, background .15s;
+    }
+
+    .pg-room:hover {
+      border-color: var(--blue-mid);
+    }
+
+    .pg-room.checked {
+      border-color: var(--blue-primary);
+      background: var(--blue-soft);
+    }
+
+    .pg-room-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .pg-check {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      border: 2px solid var(--gray-border);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s, border-color .15s;
+    }
+
+    .pg-room.checked .pg-check {
+      background: var(--blue-primary);
+      border-color: var(--blue-primary);
+    }
+
+    .pg-check svg {
+      width: 15px;
+      height: 15px;
+      color: #fff;
+      opacity: 0;
+      transition: opacity .15s;
+    }
+
+    .pg-room.checked .pg-check svg {
+      opacity: 1;
+    }
+
+    /* 日期分頁 */
+    .pg-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      margin-top: 4px;
+    }
+
+    .pg-tab {
+      flex-shrink: 0;
+      border: 1.5px solid var(--gray-border);
+      background: var(--white);
+      color: var(--gray-text);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+
+    .pg-tab.active {
+      background: var(--blue-primary);
+      border-color: var(--blue-primary);
+      color: #fff;
+    }
+
+    /* 議程卡片 */
+    .pg-prog {
+      position: relative;
+      background: var(--white);
+      border: 1.5px solid var(--gray-border);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: var(--shadow);
+    }
+
+    .pg-prog-time {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue-primary);
+      padding-right: 32px;
+    }
+
+    .pg-prog-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.45;
+      padding-right: 32px;
+    }
+
+    .pg-prog-speaker {
+      font-size: 13.5px;
+      color: var(--gray-text);
+    }
+
+    .pg-prog-room {
+      font-size: 12.5px;
+      color: var(--blue-dark);
+      background: var(--blue-soft);
+      border-radius: 6px;
+      padding: 3px 9px;
+      align-self: flex-start;
+      margin-top: 2px;
+    }
+
+    .pg-prog-addr {
+      font-size: 13px;
+      color: var(--gray-text);
+      line-height: 1.5;
+      margin-top: 2px;
+    }
+
+    .pg-prog-foot {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 5px;
+    }
+
+    .pg-tag {
+      font-size: 11.5px;
+      color: var(--purple-icon);
+      background: var(--purple-soft);
+      border-radius: 6px;
+      padding: 3px 8px;
+    }
+
+    .pg-star {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      cursor: pointer;
+      color: var(--gray-border);
+      flex-shrink: 0;
+    }
+
+    .pg-star.on {
+      color: #f59e0b;
+    }
+
+    .pg-star svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+
+    .pg-empty {
+      text-align: center;
+      color: var(--gray-text);
+      padding: 48px 0;
+      font-size: 14px;
+    }
+
+    #pgResult .pg-btn {
+      width: 100%;
+    }
+
+    /* ── 講師介紹 ── */
+    .sp-search {
+      width: 100%;
+      border: 1.5px solid var(--gray-border);
+      border-radius: 12px;
+      padding: 11px 14px;
+      font-size: 14px;
+      margin-top: 14px;
+      outline: none;
+      color: var(--text-main);
+      background: var(--white);
+    }
+
+    .sp-search:focus {
+      border-color: var(--blue-primary);
+    }
+
+    .sp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .sp-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--white);
+      border: 1.5px solid var(--gray-border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .sp-card:hover {
+      border-color: var(--blue-mid);
+      box-shadow: var(--shadow);
+    }
+
+    .sp-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue-mid), var(--blue-primary)) center / cover no-repeat;
+    }
+
+    .sp-card-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .sp-card-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .sp-card-title {
+      font-size: 13px;
+      color: var(--gray-text);
+      margin-top: 2px;
+    }
+
+    .sp-card-arrow {
+      color: var(--gray-border);
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    /* 講師簡介 卡片 */
+    .sp-card-wrap {
+      padding: 18px 16px 28px;
+    }
+
+    .sp-profile-card {
+      background: var(--white);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 1px 2px rgba(10, 10, 12, .04), 0 24px 50px -22px rgba(30, 58, 110, .4);
+    }
+
+    /* 講師簡介 hero（講師照片背景） */
+    .sp-hero {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      background: #cfd2d6 center top / cover no-repeat;
+    }
+
+    .sp-hero-menu {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 34px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 3;
+    }
+
+    .sp-hero-menu span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: #fff;
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+    }
+
+    .sp-hero-menu span:last-child {
+      width: 60%;
+    }
+
+    .sp-wave {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      width: 100%;
+      display: block;
+      z-index: 2;
+    }
+
+    .sp-btn {
+      margin: 20px auto 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue-primary);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 13px 26px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s;
+    }
+
+    .sp-btn:hover {
+      background: var(--blue-dark);
+    }
+
+    .sp-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .sp-panel {
+      text-align: center;
+      padding: 4px 20px 18px;
+    }
+
+    .sp-name {
+      font-size: 23px;
+      font-weight: 800;
+      color: var(--blue-dark);
+    }
+
+    .sp-handle {
+      margin-top: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gray-text);
+    }
+
+    .sp-tagline {
+      margin-top: 14px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--gray-text);
+    }
+
+    .sp-section {
+      padding: 18px 20px 0;
+    }
+
+    .sp-divider {
+      height: 1px;
+      background: var(--gray-border);
+      margin: 6px 20px 0;
+    }
+
+    .sp-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+      margin-bottom: 12px;
+    }
+
+    .sp-text {
+      font-size: 14px;
+      line-height: 1.85;
+      color: #4a4d52;
+      text-align: left;
+    }
+
+    .sp-edu {
+      list-style: none;
+      text-align: left;
+    }
+
+    .sp-edu li {
+      padding: 12px 0;
+      border-top: 1px solid var(--gray-border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .sp-edu li:first-child {
+      border-top: none;
+    }
+
+    .sp-edu .deg {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .sp-edu .inst {
+      font-size: 12.5px;
+      color: var(--gray-text);
+      margin-top: 2px;
+    }
+
+    .sp-edu .yr {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue-mid);
+      flex: 0 0 auto;
+    }
+
+    .sp-bullets {
+      list-style: none;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sp-bullets li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: #4a4d52;
+    }
+
+    .sp-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--blue-mid);
+    }
+
+    .sp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .sp-tag {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue-dark);
+      background: var(--blue-soft);
+      border: 1px solid #bfdbfe;
+      border-radius: 999px;
+      padding: 6px 14px;
+    }
+
+    .sp-star {
+      cursor: pointer;
+      color: #cbd5e1;
+      flex-shrink: 0;
+    }
+
+    .sp-star.on {
+      color: #f59e0b;
+    }
+
+    .sp-star svg {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+
+    .sp-hero-fav {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 3;
+      color: #cbd5e1;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+    }
+
+    .sp-hero-fav.on {
+      color: #f59e0b;
+    }
+
+    .sp-hero-fav svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+
+    /* 近期演講連結 */
+    .sp-prog-link {
+      cursor: pointer;
+      color: var(--blue-primary);
+      font-weight: 600;
+    }
+
+    .sp-prog-link:hover {
+      text-decoration: underline;
+    }
+
+    .sp-prog-link::before {
+      background: var(--blue-primary) !important;
+    }
+
+    .sp-prog-meta {
+      display: block;
+      color: var(--gray-text);
+      font-weight: 400;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    /* ── 議程詳細頁 ── */
+    .pgi-titlebar {
+      background: var(--blue-primary);
+      color: #fff;
+      text-align: center;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.5;
+      padding: 14px 18px;
+    }
+
+    .pgi-meta {
+      text-align: center;
+      padding: 13px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .pgi-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      padding: 16px 18px 0;
+    }
+
+    .pgi-speaker {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px 18px;
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .pgi-speaker:hover {
+      background: var(--blue-soft);
+    }
+
+    .pgi-sp-photo {
+      width: 66px;
+      height: 66px;
+      border-radius: 12px;
+      flex-shrink: 0;
+      background: #cfd2d6 center / cover no-repeat;
+    }
+
+    .pgi-sp-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pgi-sp-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--blue-dark);
+    }
+
+    .pgi-sp-title {
+      font-size: 13px;
+      color: var(--gray-text);
+      margin-top: 2px;
+    }
+
+    .pgi-sp-eyebrow {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+      margin: 10px 0 4px;
+    }
+
+    .pgi-sp-excerpt {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #4a4d52;
+    }
+
+    .pgi-sp-go {
+      align-self: center;
+      color: var(--gray-border);
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .pg-prog {
+      cursor: pointer;
+    }
+
+    .pgi-room-bar {
+      background: var(--blue-primary);
+      color: #fff;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 11px 18px;
+      margin-top: 4px;
+    }
+
+    .pgi-divider {
+      height: 1px;
+      background: var(--gray-border);
+    }
+
+    .pgi-section-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+      padding: 14px 18px 0;
+    }
+
+    /* ── 平面圖 ── */
+    .map-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 14px;
+    }
+
+    .map-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--white);
+      border-top: 1px solid var(--gray-border);
+      padding: 16px 18px;
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .map-item:last-child {
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .map-item:hover { background: var(--blue-soft); }
+
+    .map-item-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--blue-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .map-item-icon svg { width: 22px; height: 22px; color: var(--blue-primary); }
+
+    .map-item-info { flex: 1; min-width: 0; }
+
+    .map-item-name { font-size: 15px; font-weight: 600; color: var(--text-main); }
+
+    .map-item-desc { font-size: 12.5px; color: var(--gray-text); margin-top: 2px; }
+
+    .map-item-arrow { color: var(--gray-text); font-size: 22px; flex-shrink: 0; }
+
+    .map-detail-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--blue-dark);
+      text-align: center;
+      padding: 18px 18px 12px;
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .map-detail-hint {
+      font-size: 12px;
+      color: var(--gray-text);
+      text-align: center;
+      padding: 10px 18px 0;
+    }
+
+    .map-detail-img-wrap {
+      overflow: auto;
+      padding: 16px;
+      background: var(--gray-bg);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .map-detail-img-wrap img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      display: block;
+      margin: 0 auto;
+    }
+
+    .map-detail-placeholder {
+      background: var(--blue-soft);
+      border: 2px dashed #bfdbfe;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 60px 24px;
+      color: var(--blue-primary);
+      text-align: center;
+      margin: 16px;
+    }
+
+    .map-detail-placeholder svg { width: 40px; height: 40px; opacity: .5; }
+
+    .map-detail-placeholder p { font-size: 13px; color: var(--gray-text); line-height: 1.6; }
+
+    /* ── 論文集 ── */
+    .ep-section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      color: var(--blue-primary);
+      background: var(--blue-soft);
+      padding: 8px 18px;
+      border-left: 3px solid var(--blue-primary);
+      margin-top: 10px;
+    }
+
+    .ep-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--gray-border);
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .ep-item:hover { background: var(--blue-soft); }
+
+    .ep-item-no {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--blue-soft);
+      color: var(--blue-primary);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ep-item-info { flex: 1; min-width: 0; }
+
+    .ep-item-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.45;
+    }
+
+    .ep-item-meta {
+      font-size: 12px;
+      color: var(--gray-text);
+      margin-top: 3px;
+    }
+
+    .ep-item-arrow { color: var(--gray-text); font-size: 20px; flex-shrink: 0; }
+
+    .ep-detail-titlebar {
+      background: var(--blue-primary);
+      color: #fff;
+      text-align: center;
+      padding: 18px 20px 16px;
+    }
+
+    .ep-detail-category {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      opacity: .75;
+      margin-bottom: 6px;
+    }
+
+    .ep-detail-title {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .ep-detail-author-block {
+      text-align: center;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .ep-detail-author {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .ep-detail-institute {
+      font-size: 12.5px;
+      color: var(--gray-text);
+      margin-top: 3px;
+    }
+
+    .ep-content {
+      padding: 18px 20px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .ep-section-eyebrow {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      color: var(--blue-primary);
+      margin-bottom: 7px;
+    }
+
+    .ep-body-text {
+      font-size: 14px;
+      line-height: 1.9;
+      color: #4a4d52;
+    }
+
+    /* ── Offcanvas 選單 ── */
+    .offcanvas-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 40;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s;
+    }
+    .offcanvas-backdrop.open { opacity: 1; pointer-events: all; }
+    .offcanvas {
+      position: absolute; top: 0; left: 0;
+      width: 290px; height: 100%;
+      background: var(--white);
+      z-index: 41;
+      transform: translateX(-100%);
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
+      overflow-y: auto;
+      display: flex; flex-direction: column;
+      box-shadow: 4px 0 24px rgba(0,0,0,0.14);
+    }
+    .offcanvas.open { transform: translateX(0); }
+    .offcanvas-hd {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-primary) 100%);
+      padding: 28px 20px 22px;
+      display: flex; align-items: center; gap: 14px;
+      flex-shrink: 0;
+    }
+    .offcanvas-hd-logo {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .offcanvas-hd-logo img { width: 42px; height: 42px; object-fit: contain; }
+    .offcanvas-hd-text {}
+    .offcanvas-hd-org { font-size: 15px; font-weight: 800; color: #fff; }
+    .offcanvas-hd-sub { font-size: 12px; color: rgba(255,255,255,.75); margin-top: 2px; }
+    .offcanvas-section {
+      padding: 11px 20px 7px;
+      font-size: 11px; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--blue-primary);
+      background: var(--blue-soft);
+      border-top: 1px solid var(--gray-border);
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .offcanvas-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--gray-border);
+      cursor: pointer; transition: background .15s;
+    }
+    .offcanvas-item:hover { background: var(--blue-soft); }
+    .offcanvas-item-ico {
+      width: 38px; height: 38px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .offcanvas-item-ico svg { width: 20px; height: 20px; }
+    .offcanvas-item-txt {}
+    .offcanvas-item-name { font-size: 14.5px; font-weight: 700; color: var(--text-main); line-height: 1.3; }
+    .offcanvas-item-en { font-size: 12px; color: var(--gray-text); }
+
+    /* ── 推播 styles ── */
+    .notif-item {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--gray-border);
+      cursor: pointer; transition: background .15s;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .notif-item:hover { background: var(--blue-soft); }
+    .notif-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue-primary); flex-shrink: 0; margin-top: 6px; }
+    .notif-item-body { flex: 1; min-width: 0; }
+    .notif-item-time { font-size: 12px; color: var(--gray-text); margin-bottom: 3px; }
+    .notif-item-title { font-size: 14.5px; font-weight: 700; color: var(--text-main); line-height: 1.4; margin-bottom: 5px; }
+    .notif-item-preview { font-size: 13px; color: var(--gray-text); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .notif-item-arrow { font-size: 20px; color: var(--gray-text); flex-shrink: 0; align-self: center; }
+    .notif-det-time { font-size: 12.5px; color: var(--gray-text); padding: 14px 20px 0; }
+    .notif-det-title { font-size: 18px; font-weight: 800; color: var(--text-main); padding: 8px 20px 14px; line-height: 1.45; border-bottom: 1px solid var(--gray-border); }
+    .notif-det-body { font-size: 14.5px; line-height: 1.95; color: #4a4d52; padding: 18px 20px 36px; }
+
+    /* ── 聯絡我們 styles ── */
+    .contact-header {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-primary) 100%);
+      padding: 28px 20px 24px;
+      text-align: center; color: #fff;
+    }
+    .contact-logo { width: 72px; height: 72px; object-fit: contain; margin-bottom: 10px; }
+    .contact-org { font-size: 18px; font-weight: 800; }
+    .contact-body { padding: 8px 0 40px; }
+    .contact-section-label {
+      font-size: 10.5px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--blue-primary); padding: 18px 20px 6px;
+    }
+    .contact-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 13px 20px;
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .contact-row-ico { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contact-row-ico svg { width: 18px; height: 18px; }
+    .contact-row-label { font-size: 12px; color: var(--gray-text); margin-bottom: 1px; }
+    .contact-row-val { font-size: 14px; font-weight: 600; color: var(--text-main); }
+    .contact-row-val a { color: var(--blue-primary); text-decoration: none; }
+
+    /* ── QR 報到 styles ── */
+    @keyframes qrBgShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes qrFloat {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+    .qr-login-bg {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 24px;
+      background: linear-gradient(-45deg, #eff6ff, #dbeafe, #bfdbfe, #93c5fd, #60a5fa);
+      background-size: 400% 400%;
+      animation: qrBgShift 12s ease infinite;
+      overflow-y: auto;
+    }
+    .qr-login-card {
+      width: 100%;
+      max-width: 340px;
+      background: rgba(255, 255, 255, 0.38);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 28px;
+      border: 1.5px solid rgba(255, 255, 255, 0.65);
+      padding: 32px 24px 26px;
+      box-shadow: 0 12px 40px rgba(37, 99, 199, 0.14);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .qr-login-avatar {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.7);
+      border: 3px solid rgba(255, 255, 255, 0.9);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 20px rgba(37, 99, 199, 0.18);
+      animation: qrFloat 4s ease-in-out infinite;
+    }
+    .qr-login-avatar img { width: 72px; height: 72px; object-fit: contain; }
+    .qr-login-divider { width: 80%; height: 1px; background: rgba(255,255,255,0.55); margin-bottom: 16px; }
+    .qr-login-title { font-size: 22px; font-weight: 800; color: var(--blue-dark); margin-bottom: 3px; }
+    .qr-login-subtitle { font-size: 13px; color: var(--blue-primary); margin-bottom: 22px; letter-spacing: .04em; }
+    .qr-login-label {
+      width: 100%;
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13.5px; font-weight: 700; color: var(--blue-dark);
+      margin-bottom: 9px;
+    }
+    .qr-login-label svg { width: 16px; height: 16px; stroke: var(--blue-primary); flex-shrink: 0; }
+    .qr-login-input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1.5px solid rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.55);
+      font-size: 14px; color: var(--text-main);
+      outline: none;
+      margin-bottom: 14px;
+    }
+    .qr-login-input:focus { border-color: var(--blue-primary); background: rgba(255,255,255,0.8); }
+    .qr-login-input::placeholder { color: rgba(37, 99, 199, 0.4); }
+    .qr-login-btn {
+      width: 100%; padding: 13px;
+      border-radius: 12px;
+      background: var(--blue-primary);
+      color: #fff; font-size: 15px; font-weight: 700;
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      transition: background .15s;
+    }
+    .qr-login-btn:hover { background: var(--blue-dark); }
+    .qr-login-error { font-size: 12.5px; color: #dc2626; margin-top: 10px; text-align: center; display: none; }
+    .qr-login-error.show { display: block; }
+
+    .qr-det-qr-wrap {
+      padding: 28px 20px 20px;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .qr-det-qr-img {
+      width: 186px; height: 186px;
+      border-radius: 10px;
+      border: 4px solid var(--white);
+      box-shadow: var(--shadow);
+    }
+    .qr-det-user-name { font-size: 16px; font-weight: 700; color: var(--text-main); }
+    .qr-det-user-meta { font-size: 13.5px; color: var(--gray-text); text-align: center; line-height: 1.9; }
+    .qr-det-table { width: 100%; border-collapse: collapse; }
+    .qr-det-table td { padding: 13px 20px; font-size: 14px; border-bottom: 1px solid var(--gray-border); color: var(--text-main); }
+    .qr-det-table td:last-child { text-align: right; }
+    .qr-det-done   { color: var(--blue-primary); font-weight: 600; }
+    .qr-det-checked { color: #10b981; font-weight: 600; }
+    .qr-det-pending { color: var(--gray-text); }
+    .qr-det-coupon-btn {
+      display: block;
+      margin: 20px 20px 36px;
+      padding: 13px;
+      border-radius: 12px;
+      border: 2px solid var(--blue-primary);
+      color: var(--blue-primary);
+      background: var(--white);
+      font-size: 14.5px; font-weight: 600;
+      text-align: center; cursor: pointer;
+      transition: background .15s;
+    }
+    .qr-det-coupon-btn:hover { background: var(--blue-light); }
+
+    /* ── 大會資訊 styles ── */
+    .info-item {
+      display: flex;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--gray-border);
+      cursor: pointer;
+      transition: background .15s;
+      gap: 14px;
+    }
+    .info-item:hover { background: var(--blue-soft); }
+    .info-item-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: var(--blue-light);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .info-item-icon svg { width: 18px; height: 18px; stroke: var(--blue-primary); }
+    .info-item-body { flex: 1; min-width: 0; }
+    .info-item-title { font-size: 15px; font-weight: 700; color: var(--text-main); line-height: 1.4; margin-bottom: 2px; }
+    .info-item-sub { font-size: 12.5px; color: var(--gray-text); }
+    .info-item-arrow { font-size: 20px; color: var(--gray-text); flex-shrink: 0; }
+
+    .info-det-header {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-primary) 100%);
+      color: #fff;
+      padding: 24px 20px 20px;
+    }
+    .info-det-header-title { font-size: 18px; font-weight: 700; line-height: 1.45; }
+    .info-det-body { padding: 20px 20px 40px; display: flex; flex-direction: column; gap: 20px; }
+    .info-det-section { display: flex; flex-direction: column; gap: 7px; }
+    .info-det-label {
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--blue-primary);
+    }
+    .info-det-text { font-size: 14px; line-height: 1.9; color: #4a4d52; white-space: pre-line; }
+
+    /* ── 參展廠商 styles ── */
+    .exh-cat-item {
+      display: flex;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--gray-border);
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .exh-cat-item:hover { background: var(--blue-soft); }
+    .exh-cat-name { flex: 1; font-size: 15.5px; font-weight: 600; color: var(--text-main); }
+    .exh-cat-count { font-size: 13px; color: var(--gray-text); margin-right: 6px; }
+    .exh-cat-arrow { font-size: 20px; color: var(--gray-text); }
+
+    .exh-search-wrap {
+      flex-shrink: 0;
+      padding: 10px 16px;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .exh-search {
+      width: 100%;
+      padding: 9px 14px 9px 36px;
+      border: 1.5px solid var(--gray-border);
+      border-radius: 24px;
+      font-size: 14px;
+      outline: none;
+      background: var(--gray-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") 12px center no-repeat;
+    }
+    .exh-search:focus { border-color: var(--blue-primary); }
+
+    .exh-filter-bar {
+      flex-shrink: 0;
+      display: flex;
+      gap: 8px;
+      padding: 10px 16px;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--gray-border);
+      background: var(--white);
+    }
+    .exh-filter-bar::-webkit-scrollbar { display: none; }
+    .exh-chip {
+      flex-shrink: 0;
+      white-space: nowrap;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1.5px solid var(--gray-border);
+      background: var(--white);
+      color: var(--gray-text);
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .exh-chip.active { border-color: var(--blue-primary); background: var(--blue-primary); color: #fff; }
+
+    .exh-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--gray-border);
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .exh-card:hover { background: var(--blue-soft); }
+    .exh-card-body { flex: 1; min-width: 0; }
+    .exh-card-name { font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; line-height: 1.4; }
+    .exh-card-meta { font-size: 12.5px; color: var(--gray-text); margin-bottom: 5px; }
+    .exh-tag-badge { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 11.5px; font-weight: 600; }
+    .exh-tag-gold { background: #fef3c7; color: #b45309; }
+    .exh-tag-silver { background: #dcfce7; color: #166534; }
+
+    .exh-star-btn {
+      width: 36px; height: 36px;
+      border: none; background: transparent; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; border-radius: 50%; transition: background .15s;
+    }
+    .exh-star-btn:hover { background: var(--blue-light); }
+    .exh-star-btn svg { width: 22px; height: 22px; }
+    .exh-star-btn.starred svg { fill: #f59e0b; stroke: #d97706; }
+
+    .exh-det-header {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-primary) 100%);
+      color: #fff;
+      padding: 28px 20px 22px;
+      text-align: center;
+    }
+    .exh-det-logo {
+      width: 72px; height: 72px;
+      border-radius: 16px;
+      background: #fff;
+      margin: 0 auto 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 900; color: var(--blue-primary);
+    }
+    .exh-det-name { font-size: 16px; font-weight: 700; line-height: 1.45; }
+    .exh-det-booth { font-size: 13px; opacity: .8; margin-top: 5px; }
+    .exh-det-body { padding: 20px 20px 36px; display: flex; flex-direction: column; gap: 20px; }
+    .exh-det-section-label {
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--blue-primary); margin-bottom: 9px;
+    }
+    .exh-det-desc { font-size: 14px; line-height: 1.85; color: #4a4d52; }
+    .exh-det-link-btn {
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      width: 100%; padding: 12px 20px;
+      border-radius: 12px; background: var(--blue-primary);
+      color: #fff; font-size: 14.5px; font-weight: 600;
+      text-decoration: none; border: none; cursor: pointer;
+    }
+    .exh-product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+    .exh-product-card { border-radius: 12px; overflow: hidden; background: var(--gray-bg); border: 1px solid var(--gray-border); }
+    .exh-product-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; background: var(--gray-border); }
+    .exh-product-name { font-size: 12px; font-weight: 600; color: var(--text-main); padding: 7px 9px; line-height: 1.4; }
+
+    /* ── 中華牙典 & Product Detail ── */
+    .exh-mode-tabs {
+      display: flex;
+      border-bottom: 2px solid var(--gray-border);
+      background: var(--white);
+    }
+    .exh-mode-tab {
+      flex: 1;
+      padding: 13px 0;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-text);
+      cursor: pointer;
+      border-bottom: 2.5px solid transparent;
+      margin-bottom: -2px;
+      transition: all .15s;
+      background: none;
+      border-left: none; border-right: none; border-top: none;
+    }
+    .exh-mode-tab.active {
+      color: var(--blue-primary);
+      border-bottom-color: var(--blue-primary);
+    }
+
+    /* Dental product list item */
+    .dp-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--gray-border);
+      cursor: pointer;
+      background: var(--white);
+      transition: background .12s;
+    }
+    .dp-item:active { background: var(--gray-bg); }
+    .dp-item-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: var(--gray-border);
+    }
+    .dp-item-info { flex: 1; min-width: 0; }
+    .dp-item-name { font-size: 14px; font-weight: 600; color: var(--text-main); line-height: 1.4; margin-bottom: 2px; }
+    .dp-item-name-en { font-size: 12px; color: var(--gray-text); margin-bottom: 4px; }
+    .dp-item-company { font-size: 12px; color: var(--blue-primary); }
+    .dp-item-arrow { color: var(--gray-text); font-size: 18px; flex-shrink: 0; }
+
+    /* Product detail */
+    .pd-hero-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      background: var(--gray-border);
+    }
+    .pd-body { padding: 20px 16px; display: flex; flex-direction: column; gap: 20px; }
+    .pd-section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+      margin-bottom: 8px;
+    }
+    .pd-name { font-size: 20px; font-weight: 800; color: var(--text-main); line-height: 1.3; margin-bottom: 4px; }
+    .pd-name-en { font-size: 13px; color: var(--gray-text); }
+    .pd-desc { font-size: 14px; color: var(--gray-text); line-height: 1.8; }
+    .pd-link-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 11px 16px; border-radius: 10px;
+      background: var(--blue-light); color: var(--blue-primary);
+      font-size: 14px; font-weight: 600;
+      text-decoration: none; border: none; cursor: pointer;
+    }
+    .pd-company-card {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px; border-radius: 12px;
+      background: var(--gray-bg); border: 1px solid var(--gray-border);
+      cursor: pointer;
+    }
+    .pd-company-logo {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--blue-primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; flex-shrink: 0;
+    }
+    .pd-company-name { font-size: 14px; font-weight: 600; color: var(--text-main); }
+    .pd-company-cat { font-size: 12px; color: var(--gray-text); margin-top: 2px; }
+    .pd-other-prod {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 0; border-bottom: 1px solid var(--gray-border);
+      cursor: pointer;
+    }
+    .pd-other-prod:last-child { border-bottom: none; }
+    .pd-other-prod-img {
+      width: 48px; height: 48px; border-radius: 8px;
+      object-fit: cover; flex-shrink: 0; background: var(--gray-border);
+    }
+    .pd-other-prod-name { font-size: 13px; font-weight: 600; color: var(--text-main); flex: 1; }
+
+    /* ── 名牌 3D Card ── */
+    .badge-scene {
+      flex: 1;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow: hidden;
+      position: relative;
+    }
+    #badgeCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .badge-card-wrap {
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes badgeFloat {
+      0%   { transform: perspective(900px) rotateX(5deg)  rotateY(-6deg) translateY(0px); }
+      25%  { transform: perspective(900px) rotateX(-3deg) rotateY(6deg)  translateY(-10px); }
+      50%  { transform: perspective(900px) rotateX(-5deg) rotateY(-4deg) translateY(-5px); }
+      75%  { transform: perspective(900px) rotateX(4deg)  rotateY(5deg)  translateY(-10px); }
+      100% { transform: perspective(900px) rotateX(5deg)  rotateY(-6deg) translateY(0px); }
+    }
+    /* Holographic sweep animation */
+    @keyframes badgeSweep {
+      0%   { transform: translateX(-160%) skewX(-18deg); opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { transform: translateX(260%) skewX(-18deg); opacity: 0; }
+    }
+    .badge-card {
+      width: 272px;
+      border-radius: 24px;
+      /* Glassmorphism */
+      background: rgba(8, 22, 68, 0.55);
+      backdrop-filter: blur(32px) saturate(200%);
+      -webkit-backdrop-filter: blur(32px) saturate(200%);
+      border: 1px solid rgba(120, 190, 255, 0.22);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 32px 64px rgba(0,0,0,0.85),
+        0 0 60px rgba(37,99,199,0.30),
+        0 0 120px rgba(37,99,199,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.18);
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      animation: badgeFloat 7s ease-in-out infinite;
+      cursor: pointer;
+      padding: 28px 24px 26px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      transition: box-shadow 0.3s;
+    }
+    .badge-card.tilting {
+      animation: none;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.1),
+        0 40px 80px rgba(0,0,0,0.9),
+        0 0 80px rgba(37,99,199,0.45),
+        0 0 140px rgba(37,99,199,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.20);
+    }
+    /* Holographic shimmer (follows cursor) */
+    .badge-holo {
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      pointer-events: none;
+      z-index: 2;
+      background:
+        radial-gradient(ellipse 75% 55% at var(--mx, 50%) var(--my, 50%),
+          rgba(200,235,255,0.22) 0%,
+          rgba(100,180,255,0.12) 35%,
+          transparent 65%
+        ),
+        linear-gradient(
+          calc(var(--angle, 125deg)),
+          rgba(255, 80, 160,0.10) 0%,
+          rgba(255,210, 60,0.10) 16%,
+          rgba( 60,220,140,0.10) 33%,
+          rgba( 60,170,255,0.10) 50%,
+          rgba(160, 60,255,0.10) 66%,
+          rgba( 60,200,255,0.10) 83%,
+          rgba(255, 80,160,0.10) 100%
+        );
+      mix-blend-mode: screen;
+      opacity: 0.85;
+    }
+    /* Sweep light streak */
+    .badge-sweep {
+      position: absolute;
+      top: -10%; left: 0;
+      width: 55%; height: 120%;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255,255,255,0.04) 30%,
+        rgba(180,230,255,0.18) 50%,
+        rgba(255,255,255,0.04) 70%,
+        transparent 100%
+      );
+      transform: translateX(-160%) skewX(-18deg);
+      animation: badgeSweep 5s ease-in-out 1.5s infinite;
+      pointer-events: none;
+      z-index: 3;
+    }
+    /* Fine grid texture */
+    .badge-grid {
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      pointer-events: none;
+      z-index: 1;
+      background-image:
+        repeating-linear-gradient(0deg,  transparent, transparent 29px, rgba(255,255,255,0.025) 30px),
+        repeating-linear-gradient(90deg, transparent, transparent 29px, rgba(255,255,255,0.025) 30px);
+    }
+    /* Top gloss arc */
+    .badge-gloss {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 40%;
+      border-radius: 24px 24px 50% 50% / 24px 24px 35% 35%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.13) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 4;
+    }
+    /* Card header */
+    .badge-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 5;
+    }
+    .badge-org {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: #93c5fd;
+      text-transform: uppercase;
+    }
+    .badge-event {
+      font-size: 9.5px;
+      color: rgba(255,255,255,0.38);
+      letter-spacing: 0.07em;
+    }
+    /* QR area */
+    .badge-qr-wrap {
+      background: #fff;
+      border-radius: 16px;
+      padding: 10px;
+      box-shadow:
+        0 6px 24px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(120,190,255,0.18),
+        0 0 20px rgba(37,99,199,0.25);
+      position: relative;
+      z-index: 5;
+      margin-bottom: 22px;
+    }
+    .badge-qr-wrap img { display: block; width: 178px; height: 178px; }
+    /* Divider */
+    .badge-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(120,190,255,0.35), transparent);
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 5;
+    }
+    /* Name / hospital */
+    .badge-name {
+      font-size: 21px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.06em;
+      text-shadow: 0 0 20px rgba(96,165,250,0.8), 0 2px 8px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 5;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .badge-hospital {
+      font-size: 12.5px;
+      color: rgba(147,197,253,0.75);
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    /* Bottom stamp */
+    .badge-stamp {
+      font-size: 9.5px;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.18);
+      text-transform: uppercase;
+      position: relative;
+      z-index: 5;
+    }
+    /* Hint text below card */
+    .badge-hint {
+      margin-top: 26px;
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.07em;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
   </style>
 </head>
 
@@ -631,7 +2326,7 @@
 
     <!-- Header -->
     <header class="header">
-      <button class="header-btn" aria-label="選單">
+      <button class="header-btn" id="menuBtn" aria-label="選單">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <line x1="3" y1="6" x2="21" y2="6" />
           <line x1="3" y1="12" x2="21" y2="12" />
@@ -688,7 +2383,7 @@
 
       <!-- Quick actions -->
       <div class="quick-row">
-        <a class="quick-card green-bg" href="#" role="button">
+        <a class="quick-card green-bg" href="#" role="button" id="qrCard">
           <div class="quick-icon green">
             <!-- QR icon -->
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2"
@@ -708,7 +2403,7 @@
           </div>
           <span class="quick-arrow">›</span>
         </a>
-        <a class="quick-card blue-bg" href="#" role="button">
+        <a class="quick-card blue-bg" href="#" role="button" id="myScheduleCard">
           <div class="quick-icon blue">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round">
@@ -721,7 +2416,7 @@
             </svg>
           </div>
           <div class="quick-label">
-            <h3>我的議程</h3>
+            <h3>我的收藏</h3>
           </div>
           <span class="quick-arrow">›</span>
         </a>
@@ -729,7 +2424,7 @@
 
       <!-- Feature grid row 1 -->
       <div class="feature-grid">
-        <a class="feature-card" href="#" role="button">
+        <a class="feature-card" href="#" role="button" id="academicCard">
           <div class="feature-icon blue-i">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"
               stroke-linecap="round">
@@ -743,7 +2438,7 @@
             <p>議程與講題</p>
           </div>
         </a>
-        <a class="feature-card" href="#" role="button">
+        <a class="feature-card" href="#" role="button" id="speakersCard">
           <div class="feature-icon teal-i">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"
               stroke-linecap="round">
@@ -758,25 +2453,7 @@
             <p>講師與簡介</p>
           </div>
         </a>
-        <a class="feature-card" href="#" role="button">
-          <div class="feature-icon purple-i">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
-              <line x1="8" y1="2" x2="8" y2="18" />
-              <line x1="16" y1="6" x2="16" y2="22" />
-            </svg>
-          </div>
-          <div class="feature-label">
-            <h3>平面圖</h3>
-            <p>會場與設施位置</p>
-          </div>
-        </a>
-      </div>
-
-      <!-- Feature grid row 2 -->
-      <div class="feature-grid">
-        <a class="feature-card" href="#" role="button">
+        <a class="feature-card" href="#" role="button" id="eposterCard">
           <div class="feature-icon lblue-i">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"
               stroke-linecap="round">
@@ -791,7 +2468,25 @@
             <p>論文與摘要</p>
           </div>
         </a>
-        <a class="feature-card" href="#" role="button">
+      </div>
+
+      <!-- Feature grid row 2 -->
+      <div class="feature-grid">
+        <a class="feature-card" href="#" role="button" id="mapCard">
+          <div class="feature-icon purple-i">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+              <line x1="8" y1="2" x2="8" y2="18" />
+              <line x1="16" y1="6" x2="16" y2="22" />
+            </svg>
+          </div>
+          <div class="feature-label">
+            <h3>平面圖</h3>
+            <p>會場與設施位置</p>
+          </div>
+        </a>
+        <a class="feature-card" href="#" role="button" id="exhibitorCard">
           <div class="feature-icon orange-i">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"
               stroke-linecap="round">
@@ -806,13 +2501,12 @@
             <p>廠商與攤位資訊</p>
           </div>
         </a>
-        <a class="feature-card" href="#" role="button">
+        <a class="feature-card" href="#" role="button" id="infoCard">
           <div class="feature-icon sky-i">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2"
-              stroke-linecap="round">
-              <circle cx="12" cy="12" r="10" />
-              <line x1="12" y1="8" x2="12" y2="12" />
-              <line x1="12" y1="16" x2="12.01" y2="16" />
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="m3 11 18-5v12L3 14v-3z"/>
+              <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
             </svg>
           </div>
           <div class="feature-label">
@@ -829,7 +2523,7 @@
         </div>
         <div class="assistant-info">
           <h3>牙展AI小助手</h3>
-          <p>可協助查詢議程、講師、攤位</p>
+          <p>可協助查詢議程、講師、攤位、優惠</p>
         </div>
         <button class="btn-try">試用看看</button>
       </div>
@@ -845,29 +2539,691 @@
         <span class="nav-label">首頁</span>
       </a>
       <a href="#" class="nav-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
-          <circle cx="12" cy="10" r="3" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="2" y1="12" x2="22" y2="12" />
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
         </svg>
-        <span class="nav-label">地圖</span>
+        <span class="nav-label">官網</span>
       </a>
       <a href="#" class="nav-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2" />
-          <circle cx="8.5" cy="8.5" r="1.5" />
-          <polyline points="21 15 16 10 5 21" />
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+          <circle cx="12" cy="13" r="4" />
         </svg>
-        <span class="nav-label">照片</span>
+        <span class="nav-label">花絮</span>
       </a>
-      <a href="#" class="nav-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-          <circle cx="12" cy="7" r="4" />
+      <a href="#" class="nav-item" id="nameBadgeNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <circle cx="9" cy="10" r="2" />
+          <path d="M15 8h2M15 12h2M7 16h10" />
         </svg>
-        <span class="nav-label">我的</span>
+        <span class="nav-label">名牌</span>
       </a>
     </nav>
+
+    <!-- ── 學術演講 子頁面 ── -->
+    <section class="subpage" id="programsScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="pgBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+        <div class="subpage-title">學術演講</div>
+      </header>
+
+      <main class="scroll-area">
+        <!-- 步驟一：主題（場地）篩選 -->
+        <div id="pgFilter">
+          <div class="pg-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="16" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12.01" y2="8" />
+            </svg>
+            <span>請勾選您想查詢的主題後按確認</span>
+          </div>
+          <div class="pg-actions">
+            <button class="pg-btn" id="pgSelectAll">全選</button>
+            <button class="pg-btn" id="pgClear">清除</button>
+            <button class="pg-btn primary" id="pgConfirm">確認</button>
+          </div>
+          <div class="pg-list" id="pgRoomList"></div>
+        </div>
+
+        <!-- 步驟二：議程結果 -->
+        <div id="pgResult" hidden>
+          <div class="pg-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+            </svg>
+            <span>點選星星可以收藏學術演講</span>
+          </div>
+          <div class="pg-tabs" id="pgTabs"></div>
+          <div class="pg-list" id="pgProgList"></div>
+          <button class="pg-btn" id="pgReselect" style="margin-top:16px">重新選擇主題</button>
+        </div>
+      </main>
+    </section>
+
+    <!-- ── 我的議程 子頁面 ── -->
+    <section class="subpage" id="myScheduleScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="msBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+        <div class="subpage-title">我的收藏</div>
+      </header>
+
+      <main class="scroll-area">
+        <div class="pg-hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+          <span>這裡顯示您收藏的議程、講師與廠商</span>
+        </div>
+        <div class="pg-tabs" id="msTabs" style="margin-top:14px">
+          <button class="pg-tab active" data-mstab="program">Program 議程</button>
+          <button class="pg-tab" data-mstab="speaker">Speaker 講師</button>
+          <button class="pg-tab" data-mstab="exhibitor">Exhibitor 廠商</button>
+        </div>
+        <div class="pg-list" id="msList" style="margin-top:14px"></div>
+      </main>
+    </section>
+
+    <!-- ── 講師介紹 子頁面（列表）── -->
+    <section class="subpage" id="speakersScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="spBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+        <div class="subpage-title">講師介紹</div>
+      </header>
+      <main class="scroll-area">
+        <div class="pg-hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="16" x2="12" y2="12" />
+            <line x1="12" y1="8" x2="12.01" y2="8" />
+          </svg>
+          <span>點選講師可查看完整簡介</span>
+        </div>
+        <input type="search" class="sp-search" id="spSearch" placeholder="搜尋講師姓名">
+        <div class="sp-list" id="spList"></div>
+      </main>
+    </section>
+
+    <!-- ── 論文集列表 子頁面 ── -->
+    <section class="subpage" id="eposterListScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="eposterListBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title">論文集</div>
+      </header>
+      <main class="scroll-area" style="padding:0;gap:0;">
+        <div class="pg-hint" style="margin:14px 16px 0;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>點選論文可查看完整內容</span>
+        </div>
+        <div id="eposterList"></div>
+      </main>
+    </section>
+
+    <!-- ── 論文詳情 子頁面 ── -->
+    <section class="subpage" id="eposterDetailScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="eposterDetailBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title">論文詳情</div>
+      </header>
+      <main class="scroll-area" id="eposterDetailBody" style="padding:0;gap:0;"></main>
+    </section>
+
+    <!-- ── 平面圖列表 子頁面 ── -->
+    <section class="subpage" id="mapListScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="mapListBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title">平面圖</div>
+      </header>
+      <main class="scroll-area">
+        <div class="pg-hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>點選場地可查看詳細平面圖</span>
+        </div>
+        <div class="map-list" id="mapList"></div>
+      </main>
+    </section>
+
+    <!-- ── 平面圖詳情 子頁面 ── -->
+    <section class="subpage" id="mapDetailScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="mapDetailBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title" id="mapDetailHeaderTitle">平面圖</div>
+      </header>
+      <main class="scroll-area" id="mapDetailBody" style="padding:0;gap:0;"></main>
+    </section>
+
+    <!-- ── 議程詳情 子頁面 ── -->
+    <section class="subpage" id="pgDetailScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="pgdBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+        <div class="subpage-title">演講詳情</div>
+      </header>
+      <main class="scroll-area" id="pgdBody" style="padding:0;gap:0;"></main>
+    </section>
+
+    <!-- ── 大會資訊列表 子頁面 ── -->
+    <section class="subpage" id="infoListScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="infoListBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title">大會資訊</div>
+      </header>
+      <main class="scroll-area" style="padding:0;gap:0;">
+        <div class="pg-hint" style="margin:14px 16px 0;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>點選項目查看詳細說明</span>
+        </div>
+        <div id="infoList" style="margin-top:10px;"></div>
+      </main>
+    </section>
+
+    <!-- ── 大會資訊詳情 子頁面 ── -->
+    <section class="subpage" id="infoDetailScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="infoDetailBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title">大會資訊</div>
+      </header>
+      <main class="scroll-area" id="infoDetailBody" style="padding:0;gap:0;"></main>
+    </section>
+
+    <!-- ── QR 報到 登入 子頁面 ── -->
+    <section class="subpage" id="qrLoginScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="qrLoginBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title">QR 報到</div>
+      </header>
+      <div class="qr-login-bg">
+        <div class="qr-login-card">
+          <div class="qr-login-avatar">
+            <img src="imgs/removed-bg-1781243385323.png" alt="中華牙醫學會">
+          </div>
+          <div class="qr-login-divider"></div>
+          <div class="qr-login-title">請登入</div>
+          <div class="qr-login-subtitle">Please Sign In</div>
+          <div class="qr-login-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+            身份證字號 + 出生日後4碼
+          </div>
+          <input type="text" class="qr-login-input" id="qrLoginInput" placeholder="範例：A000000000 1128" autocomplete="off">
+          <button class="qr-login-btn" id="qrLoginBtn">
+            Sign In
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <div class="qr-login-error" id="qrLoginError">輸入格式錯誤，請重新確認</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── QR 報到 詳情 子頁面 ── -->
+    <section class="subpage" id="qrDetailScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="qrDetailBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title">報到序號 My QR</div>
+      </header>
+      <main class="scroll-area" style="padding:0;gap:0;">
+        <div class="qr-det-qr-wrap">
+          <img class="qr-det-qr-img"
+            src="https://api.qrserver.com/v1/create-qr-code/?size=372x372&data=CDA2026-F1234567890123&margin=10"
+            alt="QR Code">
+          <div class="qr-det-user-name">王醫師</div>
+          <div class="qr-det-user-meta">台北市<br>中華牙醫診所</div>
+        </div>
+        <table class="qr-det-table">
+          <tr><td>口衛品</td><td class="qr-det-pending">未領取</td></tr>
+          <tr><td>1200元牙材券</td><td class="qr-det-pending">未領取</td></tr>
+          <tr><td>3/14 會員報到</td><td class="qr-det-checked">2026/3/14 07:30</td></tr>
+          <tr><td>3/15 會員報到</td><td class="qr-det-pending">未報到</td></tr>
+          <tr><td>學術</td><td class="qr-det-done">已報名</td></tr>
+        </table>
+        <button class="qr-det-coupon-btn">我的票券夾 Coupon</button>
+      </main>
+    </section>
+
+    <!-- ── 參展廠商分類 子頁面 ── -->
+    <section class="subpage" id="exhibitorCatScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="exhibitorCatBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title">廠商 &amp; 牙典</div>
+      </header>
+      <div class="exh-mode-tabs">
+        <button class="exh-mode-tab active" id="exhTabExhibitor">參展廠商</button>
+        <button class="exh-mode-tab" id="exhTabDental">中華牙典</button>
+      </div>
+      <main class="scroll-area" style="padding:0;gap:0;">
+        <div class="pg-hint" style="margin:14px 16px 0;" id="exhibitorCatHint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span id="exhibitorCatHintText">選擇分類查看參展廠商</span>
+        </div>
+        <div id="exhibitorCatList" style="margin-top:10px;"></div>
+      </main>
+    </section>
+
+    <!-- ── 廠商列表 子頁面 ── -->
+    <section class="subpage" id="exhibitorListScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="exhibitorListBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title" id="exhibitorListTitle">廠商列表</div>
+      </header>
+      <main class="scroll-area" style="padding:0;gap:0;">
+        <div class="exh-search-wrap">
+          <input type="search" class="exh-search" id="exhSearch" placeholder="搜尋廠商名稱">
+        </div>
+        <div class="exh-filter-bar" id="exhFilterBar">
+          <button class="exh-chip active" data-tag="all">全部</button>
+          <button class="exh-chip" data-tag="全部最低價">全部最低價</button>
+          <button class="exh-chip" data-tag="部分最低價">部分最低價</button>
+        </div>
+        <div id="exhibitorList"></div>
+      </main>
+    </section>
+
+    <!-- ── 廠商詳情 子頁面 ── -->
+    <section class="subpage" id="exhibitorDetailScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="exhibitorDetailBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title">廠商詳情</div>
+      </header>
+      <main class="scroll-area" id="exhibitorDetailBody" style="padding:0;gap:0;"></main>
+    </section>
+
+    <!-- ── 中華牙典產品列表 子頁面 ── -->
+    <section class="subpage" id="dentalProdListScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="dentalProdListBack">←</button>
+        <div class="subpage-title" id="dentalProdListTitle">產品列表</div>
+      </header>
+      <main class="scroll-area" style="padding:0;gap:0;">
+        <div id="dentalProdList"></div>
+      </main>
+    </section>
+
+    <!-- ── 產品詳情 子頁面 ── -->
+    <section class="subpage" id="productDetailScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="productDetailBack">←</button>
+        <div class="subpage-title">產品詳情</div>
+      </header>
+      <main class="scroll-area" id="productDetailBody" style="padding:0;gap:0;"></main>
+    </section>
+
+    <!-- ── 推播列表 子頁面 ── -->
+    <section class="subpage" id="notifListScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="notifListBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title">推播通知</div>
+      </header>
+      <main class="scroll-area" style="padding:0;gap:0;">
+        <div class="pg-hint" style="margin:14px 16px 0;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span>大會最新公告與通知</span>
+        </div>
+        <div id="notifList" style="margin-top:10px;"></div>
+      </main>
+    </section>
+
+    <!-- ── 推播詳情 子頁面 ── -->
+    <section class="subpage" id="notifDetailScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="notifDetailBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title">通知詳情</div>
+      </header>
+      <main class="scroll-area" id="notifDetailBody" style="padding:0;gap:0;"></main>
+    </section>
+
+    <!-- ── 聯絡我們 子頁面 ── -->
+    <section class="subpage" id="contactScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="contactBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title">聯絡我們</div>
+      </header>
+      <main class="scroll-area" style="padding:0;gap:0;">
+        <div class="contact-header">
+          <img class="contact-logo" src="imgs/removed-bg-1781243385323.png" alt="中華牙醫學會">
+          <div class="contact-org">中華牙醫學會</div>
+          <div style="font-size:13px;opacity:.8;margin-top:4px;">Chinese Dental Association</div>
+        </div>
+        <div class="contact-body">
+          <div class="contact-section-label">秘書處聯絡資訊</div>
+          <div class="contact-row">
+            <div class="contact-row-ico" style="background:var(--blue-light);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-primary)" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="contact-row-label">地址</div>
+              <div class="contact-row-val">台北市信義路二段150號8樓</div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row-ico" style="background:#dcfce7;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.72a16 16 0 0 0 6 6l.91-1.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 14.92z"/></svg>
+            </div>
+            <div>
+              <div class="contact-row-label">電話</div>
+              <div class="contact-row-val"><a href="tel:0223514531">02-2351-4531</a></div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row-ico" style="background:#fef3c7;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.72a16 16 0 0 0 6 6l.91-1.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 14.92z"/></svg>
+            </div>
+            <div>
+              <div class="contact-row-label">傳真</div>
+              <div class="contact-row-val">02-2391-9098</div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row-ico" style="background:#ede9fe;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="contact-row-label">電子郵件</div>
+              <div class="contact-row-val"><a href="mailto:service@cda.org.tw">service@cda.org.tw</a></div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row-ico" style="background:var(--blue-light);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-primary)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div>
+              <div class="contact-row-label">官方網站</div>
+              <div class="contact-row-val"><a href="https://www.cda.org.tw" target="_blank" rel="noopener">www.cda.org.tw</a></div>
+            </div>
+          </div>
+
+          <div class="contact-section-label">服務時間</div>
+          <div class="contact-row">
+            <div class="contact-row-ico" style="background:#f0fdf4;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="contact-row-label">辦公室</div>
+              <div class="contact-row-val">週一至週五 09:00–17:00</div>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-row-ico" style="background:#fff7ed;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div>
+              <div class="contact-row-label">大會期間服務台</div>
+              <div class="contact-row-val">3/14–3/15・07:30–18:00</div>
+            </div>
+          </div>
+          <div class="contact-row" style="border-bottom:none;">
+            <div class="contact-row-ico" style="background:var(--blue-light);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-primary)" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="contact-row-label">服務台位置</div>
+              <div class="contact-row-val">世貿中心一樓 B 入口旁</div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </section>
+
+    <!-- ── 講師簡介 子頁面（詳情）── -->
+    <section class="subpage" id="speakerProfileScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="spProfBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+        <div class="subpage-title">講師簡介</div>
+      </header>
+      <main class="scroll-area" id="spProfBody" style="padding:0;gap:0;"></main>
+    </section>
+
+    <!-- ── 名牌 子頁面 ── -->
+    <section class="subpage" id="nameBadgeScreen" aria-hidden="true">
+      <header class="subpage-header" style="background:#000;border-bottom:1px solid rgba(255,255,255,0.08);">
+        <button class="back-btn" id="nameBadgeBack" aria-label="返回" style="color:#fff;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title" style="color:#fff;">名牌</div>
+      </header>
+      <div class="badge-scene">
+        <canvas id="badgeCanvas"></canvas>
+        <div class="badge-card-wrap">
+          <div class="badge-card" id="badgeCard">
+            <div class="badge-holo" id="badgeHolo"></div>
+            <div class="badge-sweep"></div>
+            <div class="badge-grid"></div>
+            <div class="badge-gloss"></div>
+            <div class="badge-header">
+              <div class="badge-org">中華牙醫學會</div>
+              <div class="badge-event">2026 Annual Academic Conference</div>
+            </div>
+            <div class="badge-qr-wrap">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=360x360&data=CDA2026-F1234567890123&margin=8&color=0f1f4a" alt="QR Code">
+            </div>
+            <div class="badge-divider"></div>
+            <div class="badge-name">王大明 醫師</div>
+            <div class="badge-hospital">台北醫學大學附設醫院<br>口腔外科</div>
+            <div class="badge-stamp">CDA · 2026 · TAIPEI</div>
+          </div>
+        </div>
+        <div class="badge-hint">移動裝置或滑鼠以互動</div>
+      </div>
+    </section>
+
+    <!-- ── 大會組織表 子頁面 ── -->
+    <section class="subpage" id="orgScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="orgBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title">大會組織表</div>
+      </header>
+      <main class="scroll-area" style="padding:0;gap:0;overflow-x:hidden;">
+        <img src="imgs/org_chart.jpg" id="orgChartImg" alt="大會組織表"
+          style="width:100%;display:block;object-fit:contain;"
+          onerror="this.style.display='none';document.getElementById('orgPlaceholder').style.display='flex';">
+        <div id="orgPlaceholder" style="display:none;flex-direction:column;align-items:center;justify-content:center;padding:80px 24px;gap:16px;text-align:center;color:#94a3b8;">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="2" width="8" height="5" rx="1"/><rect x="1" y="15" width="8" height="5" rx="1"/><rect x="15" y="15" width="8" height="5" rx="1"/>
+            <path d="M12 7v4M7 15v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/>
+          </svg>
+          <p style="font-size:15px;font-weight:600;color:#475569;margin:0;">大會組織表</p>
+          <p style="font-size:13px;margin:0;line-height:1.7;">圖片待上傳<br>請將圖片命名為 <code>org_chart.jpg</code> 置於 <code>imgs/</code> 資料夾</p>
+        </div>
+      </main>
+    </section>
+
+    <!-- ── 理事長的話 子頁面 ── -->
+    <section class="subpage" id="presidentScreen" aria-hidden="true">
+      <header class="subpage-header">
+        <button class="back-btn" id="presidentBack" aria-label="返回">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="subpage-title">理事長的話</div>
+      </header>
+      <main class="scroll-area" style="gap:20px;">
+        <!-- 理事長名片 -->
+        <div style="background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);border-radius:16px;padding:28px 20px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;">
+          <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;box-shadow:0 4px 16px rgba(37,99,199,.18);">
+            <img src="imgs/chairman.jpg" alt="理事長" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div>
+            <div style="font-size:13px;color:var(--blue-primary);font-weight:600;letter-spacing:.04em;margin-bottom:4px;">中華牙醫學會</div>
+            <div style="font-size:20px;font-weight:700;color:var(--blue-dark);">理事長</div>
+          </div>
+        </div>
+
+        <!-- 正文 -->
+        <div style="font-size:15px;line-height:2;color:var(--text-main);">
+          <p style="margin:0 0 16px;">諸位牙醫界先進、各位貴賓：</p>
+          <p style="margin:0 0 16px;">值此中華牙醫學會年度學術大會召開之際，本人謹代表全體理監事，向蒞臨本次大會的所有學者、專家及與會同仁，致上最誠摯的歡迎與謝忱。</p>
+          <p style="margin:0 0 16px;">本屆學術大會以「<strong>創新・傳承・卓越</strong>」為主軸，廣邀國內外牙醫學術菁英，共同探討口腔外科、牙周病學、贗復牙科、兒童牙科、齒顎矯正等多元領域之最新發展。期盼透過學術演講與研討交流，攜手提升全台牙科醫療品質，守護國人口腔健康。</p>
+          <p style="margin:0 0 16px;">面對數位化、精準醫療的時代浪潮，牙醫師的角色已從單純的口腔診療者，擴展為全身健康的重要守門人。唯有持續精進專業知能、緊跟國際脈動，方能因應日益多元的患者需求，提供最優質的醫療照護。</p>
+          <p style="margin:0 0 16px;">本次大會特別邀請多位國際知名學者及國內頂尖專家親臨演講，並規劃工作坊與廠商展示，期望為與會者帶來嶄新視野與豐富資源。感謝大會籌備委員會的辛勤付出，以及各贊助廠商的鼎力支持。</p>
+          <p style="margin:0;">衷心祝願本屆學術大會圓滿成功，各位在此收穫豐碩，並藉機廣結善緣，共創牙醫學術新里程碑。</p>
+        </div>
+
+        <!-- 署名 -->
+        <div style="text-align:right;font-size:14px;color:var(--gray-text);line-height:2;border-top:1px solid var(--gray-border);padding-top:16px;">
+          中華牙醫學會 理事長 謹致<br>中華民國一一五年
+        </div>
+      </main>
+    </section>
+
+    <!-- ── Offcanvas 漢堡選單 ── -->
+    <div class="offcanvas-backdrop" id="menuBackdrop"></div>
+    <aside class="offcanvas" id="menuOffcanvas" aria-label="主選單">
+      <div class="offcanvas-hd">
+        <div class="offcanvas-hd-logo">
+          <img src="imgs/removed-bg-1781243385323.png" alt="中華牙醫學會">
+        </div>
+        <div class="offcanvas-hd-text">
+          <div class="offcanvas-hd-org">中華牙醫學會</div>
+          <div class="offcanvas-hd-sub">2026 年度學術大會</div>
+        </div>
+      </div>
+
+      <div class="offcanvas-section">我的功能 My Function</div>
+      <div class="offcanvas-item" id="menuItemLogin">
+        <div class="offcanvas-item-ico" style="background:#dcfce7;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        </div>
+        <div class="offcanvas-item-txt">
+          <div class="offcanvas-item-name">登入</div>
+          <div class="offcanvas-item-en">Login</div>
+        </div>
+      </div>
+      <div class="offcanvas-item" id="menuItemFav">
+        <div class="offcanvas-item-ico" style="background:#fef3c7;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="offcanvas-item-txt">
+          <div class="offcanvas-item-name">我的收藏</div>
+          <div class="offcanvas-item-en">Favorite</div>
+        </div>
+      </div>
+
+      <div class="offcanvas-section">大會資訊 Congresses</div>
+      <div class="offcanvas-item" id="menuItemOrg">
+        <div class="offcanvas-item-ico" style="background:var(--blue-light);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="2" width="8" height="5" rx="1"/><rect x="1" y="15" width="8" height="5" rx="1"/><rect x="15" y="15" width="8" height="5" rx="1"/>
+            <path d="M12 7v4M7 15v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/>
+          </svg>
+        </div>
+        <div class="offcanvas-item-txt">
+          <div class="offcanvas-item-name">大會組織表</div>
+          <div class="offcanvas-item-en">Organization</div>
+        </div>
+      </div>
+      <div class="offcanvas-item" id="menuItemPresident">
+        <div class="offcanvas-item-ico" style="background:#fef9c3;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ca8a04" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div class="offcanvas-item-txt">
+          <div class="offcanvas-item-name">理事長的話</div>
+          <div class="offcanvas-item-en">President's Message</div>
+        </div>
+      </div>
+      <div class="offcanvas-item" id="menuItemNotif">
+        <div class="offcanvas-item-ico" style="background:#fce7f3;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#db2777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </div>
+        <div class="offcanvas-item-txt">
+          <div class="offcanvas-item-name">推播</div>
+          <div class="offcanvas-item-en">Notification</div>
+        </div>
+      </div>
+      <div class="offcanvas-item" id="menuItemContact">
+        <div class="offcanvas-item-ico" style="background:#ede9fe;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.72a16 16 0 0 0 6 6l.91-1.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 14.92z"/></svg>
+        </div>
+        <div class="offcanvas-item-txt">
+          <div class="offcanvas-item-name">聯絡我們</div>
+          <div class="offcanvas-item-en">Contact</div>
+        </div>
+      </div>
+    </aside>
 
   </div>
   <script>
@@ -964,6 +3320,1907 @@
       setPos(current, false);
       updateDots(0);
       resetTimer();
+    })();
+  </script>
+
+  <!-- ── 學術演講 子頁面邏輯 ── -->
+  <script>
+    (function () {
+      const screen = document.getElementById('programsScreen');
+      const card = document.getElementById('academicCard');
+      const backBtn = document.getElementById('pgBack');
+      const filterView = document.getElementById('pgFilter');
+      const resultView = document.getElementById('pgResult');
+      const roomListEl = document.getElementById('pgRoomList');
+      const tabsEl = document.getElementById('pgTabs');
+      const progListEl = document.getElementById('pgProgList');
+
+      // 場地（主題）清單
+      const ROOMS = [
+        'TICC三樓大會堂',
+        'TICC二樓201室(牙助)',
+        '世貿二樓3月14日第一會議室',
+        '世貿二樓3月14日第二會議室',
+        '世貿二樓3月14日第三會議室',
+        '世貿二樓3月14日第四會議室',
+        '世貿二樓3月14日第五會議室',
+        '世貿二樓3月15日第一會議室',
+        '世貿二樓3月15日第二會議室',
+        '世貿二樓3月15日第三會議室',
+      ];
+
+      // 議程範例資料
+      const PROGRAMS = [
+        { day: '3/14', time: '09:00 - 10:30', title: '數位牙科的臨床應用與未來趨勢', speaker: '王大明 教授', room: 'TICC三樓大會堂', tags: ['數位牙科', '專題演講'] },
+        { day: '3/14', time: '10:45 - 12:00', title: '全口重建的治療計畫思維', speaker: '李美華 醫師', room: 'TICC三樓大會堂', tags: ['補綴'] },
+        { day: '3/14', time: '13:30 - 15:00', title: '牙科助理的感染控制實務', speaker: '陳怡君 講師', room: 'TICC二樓201室(牙助)', tags: ['牙助', '感染控制'] },
+        { day: '3/14', time: '09:30 - 11:00', title: '微創植牙手術技巧', speaker: '張俊雄 醫師', room: '世貿二樓3月14日第一會議室', tags: ['植牙'] },
+        { day: '3/14', time: '11:15 - 12:30', title: '根管治療的最新器械應用', speaker: '林淑芬 醫師', room: '世貿二樓3月14日第二會議室', tags: ['根管'] },
+        { day: '3/14', time: '14:00 - 15:30', title: '兒童牙科行為管理', speaker: '黃志明 醫師', room: '世貿二樓3月14日第三會議室', tags: ['兒牙'] },
+        { day: '3/14', time: '15:45 - 17:00', title: '齒顎矯正的數位化流程', speaker: '吳佩珊 醫師', room: '世貿二樓3月14日第四會議室', tags: ['矯正', '數位牙科'] },
+        { day: '3/14', time: '13:00 - 14:30', title: '牙周再生治療新進展', speaker: '蔡宗翰 醫師', room: '世貿二樓3月14日第五會議室', tags: ['牙周'] },
+        { day: '3/15', time: '09:00 - 10:30', title: '美學貼片的設計與製作', speaker: '鄭雅文 醫師', room: '世貿二樓3月15日第一會議室', tags: ['美學', '補綴'] },
+        { day: '3/15', time: '10:45 - 12:00', title: '口腔外科常見併發症處理', speaker: '許家豪 醫師', room: '世貿二樓3月15日第二會議室', tags: ['口外'] },
+        { day: '3/15', time: '13:30 - 15:00', title: '人工智慧於牙科影像診斷', speaker: '劉建宏 教授', room: '世貿二樓3月15日第三會議室', tags: ['AI', '影像'] },
+        { day: '3/15', time: '15:15 - 16:30', title: '高齡患者的口腔照護', speaker: '周淑惠 醫師', room: 'TICC三樓大會堂', tags: ['高齡', '專題演講'] },
+      ];
+
+      // 場地 → 實際地址
+      const ROOM_ADDR = {
+        'TICC三樓大會堂': 'TICC台北國際會議中心 3樓大會堂',
+        'TICC二樓201室(牙助)': '外貿協會台北國際會議中心〔台北市信義區信義路五段1號〕AD區交界區',
+        '世貿二樓3月14日第一會議室': '台北世界貿易中心展覽大樓 2樓第一會議室〔台北市信義區信義路五段5號〕',
+        '世貿二樓3月14日第二會議室': '台北世界貿易中心展覽大樓 2樓第二會議室〔台北市信義區信義路五段5號〕',
+        '世貿二樓3月14日第三會議室': '台北世界貿易中心展覽大樓 2樓第三會議室〔台北市信義區信義路五段5號〕',
+        '世貿二樓3月14日第四會議室': '台北世界貿易中心展覽大樓 2樓第四會議室〔台北市信義區信義路五段5號〕',
+        '世貿二樓3月14日第五會議室': '台北世界貿易中心展覽大樓 2樓第五會議室〔台北市信義區信義路五段5號〕',
+        '世貿二樓3月15日第一會議室': '台北世界貿易中心展覽大樓 2樓第一會議室〔台北市信義區信義路五段5號〕',
+        '世貿二樓3月15日第二會議室': '台北世界貿易中心展覽大樓 2樓第二會議室〔台北市信義區信義路五段5號〕',
+        '世貿二樓3月15日第三會議室': '台北世界貿易中心展覽大樓 2樓第三會議室〔台北市信義區信義路五段5號〕',
+      };
+
+      const CHECK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>';
+      const STAR_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>';
+
+      // 我的議程子頁面元素
+      const myScreen = document.getElementById('myScheduleScreen');
+      const myCard = document.getElementById('myScheduleCard');
+      const msBack = document.getElementById('msBack');
+      const msList = document.getElementById('msList');
+
+      // 收藏（以 localStorage 持久化）
+      let favArr = [];
+      try { favArr = JSON.parse(localStorage.getItem('tda_fav_pg') || '[]'); } catch (err) { favArr = []; }
+      const favorites = new Set(favArr);
+      function saveFav() {
+        try { localStorage.setItem('tda_fav_pg', JSON.stringify(Array.from(favorites))); } catch (err) {}
+      }
+      let activeDay = '';
+
+      // 渲染場地勾選清單
+      ROOMS.forEach(function (name) {
+        const row = document.createElement('div');
+        row.className = 'pg-room';
+        row.dataset.room = name;
+        row.innerHTML = '<span class="pg-room-name">' + name + '</span><span class="pg-check">' + CHECK_SVG + '</span>';
+        row.addEventListener('click', function () {
+          row.classList.toggle('checked');
+        });
+        roomListEl.appendChild(row);
+      });
+
+      function getCheckedRooms() {
+        return Array.from(roomListEl.querySelectorAll('.pg-room.checked')).map(function (r) {
+          return r.dataset.room;
+        });
+      }
+
+      // 全選 / 清除
+      document.getElementById('pgSelectAll').addEventListener('click', function () {
+        roomListEl.querySelectorAll('.pg-room').forEach(function (r) { r.classList.add('checked'); });
+      });
+      document.getElementById('pgClear').addEventListener('click', function () {
+        roomListEl.querySelectorAll('.pg-room').forEach(function (r) { r.classList.remove('checked'); });
+      });
+
+      // 確認 → 顯示議程結果
+      document.getElementById('pgConfirm').addEventListener('click', function () {
+        const rooms = getCheckedRooms();
+        if (!rooms.length) {
+          alert('請至少勾選一個主題');
+          return;
+        }
+        showResult(rooms);
+      });
+
+      document.getElementById('pgReselect').addEventListener('click', showFilter);
+
+      function showFilter() {
+        resultView.hidden = true;
+        filterView.hidden = false;
+        screen.querySelector('.scroll-area').scrollTop = 0;
+      }
+
+      function showResult(rooms) {
+        const matched = PROGRAMS.filter(function (p) { return rooms.indexOf(p.room) !== -1; });
+        const days = [];
+        matched.forEach(function (p) { if (days.indexOf(p.day) === -1) days.push(p.day); });
+        days.sort();
+
+        // 日期分頁
+        tabsEl.innerHTML = '';
+        if (activeDay === '' || days.indexOf(activeDay) === -1) activeDay = days[0] || '';
+        days.forEach(function (day) {
+          const tab = document.createElement('button');
+          tab.className = 'pg-tab' + (day === activeDay ? ' active' : '');
+          tab.textContent = '3月' + day.split('/')[1] + '日';
+          tab.addEventListener('click', function () {
+            activeDay = day;
+            renderProgs(matched);
+            tabsEl.querySelectorAll('.pg-tab').forEach(function (t) { t.classList.remove('active'); });
+            tab.classList.add('active');
+          });
+          tabsEl.appendChild(tab);
+        });
+
+        renderProgs(matched);
+        filterView.hidden = true;
+        resultView.hidden = false;
+        screen.querySelector('.scroll-area').scrollTop = 0;
+      }
+
+      // 共用：建立一張議程卡片
+      function buildProgCard(p) {
+        const id = p.title;
+        const tags = p.tags.map(function (t) { return '<span class="pg-tag">' + t + '</span>'; }).join('');
+        const addr = ROOM_ADDR[p.room] || p.room;
+        const card = document.createElement('div');
+        card.className = 'pg-prog';
+        card.innerHTML =
+          '<span class="pg-star' + (favorites.has(id) ? ' on' : '') + '">' + STAR_SVG + '</span>' +
+          '<div class="pg-prog-time">' + p.time + '</div>' +
+          '<div class="pg-prog-title">' + p.title + '</div>' +
+          '<div class="pg-prog-speaker">' + p.speaker + '</div>' +
+          '<div class="pg-prog-addr">' + addr + '</div>' +
+          '<div class="pg-prog-room">' + p.room + '</div>' +
+          '<div class="pg-prog-foot">' + tags + '</div>';
+        card.querySelector('.pg-star').addEventListener('click', function (e) {
+          e.stopPropagation();
+          if (favorites.has(id)) { favorites.delete(id); this.classList.remove('on'); }
+          else { favorites.add(id); this.classList.add('on'); }
+          saveFav();
+          renderMySchedule(); // 同步更新「我的議程」
+        });
+        card.addEventListener('click', function () { openProgramDetail(p); });
+        return card;
+      }
+
+      function renderProgs(matched) {
+        const list = matched.filter(function (p) { return p.day === activeDay; });
+        progListEl.innerHTML = '';
+        if (!list.length) {
+          progListEl.innerHTML = '<div class="pg-empty">此日期沒有符合的議程</div>';
+          return;
+        }
+        list.forEach(function (p) { progListEl.appendChild(buildProgCard(p)); });
+      }
+
+      // 我的議程：分 Program / Speaker / Exhibitor 三類
+      let msTab = 'program';
+      function renderMySchedule() {
+        msList.innerHTML = '';
+        if (msTab === 'exhibitor') {
+          const list = EXHIBITORS.filter(function (ex) { return favExhibitors.has(ex.id); });
+          if (!list.length) {
+            msList.innerHTML = '<div class="pg-empty">尚未收藏任何廠商<br>到「參展廠商」點選星星即可加入</div>';
+            return;
+          }
+          list.forEach(function (ex) {
+            var div = document.createElement('div');
+            div.className = 'exh-card';
+            var tagHtml = ex.tag
+              ? '<span class="exh-tag-badge ' + (ex.tag === '全部最低價' ? 'exh-tag-gold' : 'exh-tag-silver') + '">' + ex.tag + '</span>'
+              : '';
+            div.innerHTML =
+              '<div class="exh-card-body">' +
+                '<div class="exh-card-name">' + ex.name + '</div>' +
+                '<div class="exh-card-meta">展位：' + ex.booth + '・' + ex.category + '</div>' +
+                tagHtml +
+              '</div>' +
+              '<button class="exh-star-btn starred" data-ex-id="' + ex.id + '" aria-label="取消收藏">' +
+                '<svg viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' +
+              '</button>';
+            div.querySelector('.exh-star-btn').addEventListener('click', function (e) {
+              e.stopPropagation();
+              favExhibitors.delete(this.dataset.exId);
+              saveFavExhibitors();
+              renderMySchedule();
+            });
+            div.addEventListener('click', function () { openExhibitorDetail(ex); });
+            msList.appendChild(div);
+          });
+        } else if (msTab === 'speaker') {
+          const list = SPEAKERS.filter(function (s) { return favSpeakers.has(s.name); });
+          if (!list.length) {
+            msList.innerHTML = '<div class="pg-empty">尚未收藏任何講師<br>到「講師介紹」點選星星即可加入</div>';
+            return;
+          }
+          list.forEach(function (s) { msList.appendChild(buildSpeakerCard(s)); });
+        } else {
+          const list = PROGRAMS.filter(function (p) { return favorites.has(p.title); });
+          if (!list.length) {
+            msList.innerHTML = '<div class="pg-empty">尚未收藏任何學術演講<br>到「學術演講」點選星星即可加入</div>';
+            return;
+          }
+          list.forEach(function (p) { msList.appendChild(buildProgCard(p)); });
+        }
+      }
+
+      // 開啟 / 關閉子頁面
+      if (card) {
+        card.addEventListener('click', function (e) {
+          e.preventDefault();
+          screen.classList.add('open');
+          screen.setAttribute('aria-hidden', 'false');
+        });
+      }
+      backBtn.addEventListener('click', function () {
+        if (!resultView.hidden) {
+          showFilter();
+        } else {
+          screen.classList.remove('open');
+          screen.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      // 我的議程：開啟 / 關閉
+      if (myCard) {
+        myCard.addEventListener('click', function (e) {
+          e.preventDefault();
+          renderMySchedule();
+          myScreen.classList.add('open');
+          myScreen.setAttribute('aria-hidden', 'false');
+          myScreen.querySelector('.scroll-area').scrollTop = 0;
+        });
+      }
+      msBack.addEventListener('click', function () {
+        myScreen.classList.remove('open');
+        myScreen.setAttribute('aria-hidden', 'true');
+      });
+
+      // ── 講師介紹 ──
+      const spCard = document.getElementById('speakersCard');
+      const spScreen = document.getElementById('speakersScreen');
+      const spBack = document.getElementById('spBack');
+      const spList = document.getElementById('spList');
+      const spSearch = document.getElementById('spSearch');
+      const spProfScreen = document.getElementById('speakerProfileScreen');
+      const spProfBack = document.getElementById('spProfBack');
+      const spProfBody = document.getElementById('spProfBody');
+
+      // Unsplash 人物照（示意用）
+      const SP_PHOTOS = [
+        'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?q=80&w=600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1612531385446-f7e6d131e1d0?q=80&w=600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?q=80&w=600&auto=format&fit=crop',
+      ];
+
+      // 從議程的講師欄位整理出講師清單
+      const SPEAKERS = (function () {
+        const map = {};
+        const order = [];
+        PROGRAMS.forEach(function (p) {
+          const parts = p.speaker.trim().split(/\s+/);
+          const title = parts.length > 1 ? parts[parts.length - 1] : '';
+          const name = parts.length > 1 ? parts.slice(0, -1).join('') : p.speaker;
+          if (!map[name]) { map[name] = { name: name, title: title, programs: [], tags: [] }; order.push(name); }
+          map[name].programs.push(p);
+          p.tags.forEach(function (t) { if (map[name].tags.indexOf(t) === -1) map[name].tags.push(t); });
+        });
+        return order.map(function (k, i) {
+          map[k].photo = SP_PHOTOS[i % SP_PHOTOS.length];
+          return map[k];
+        });
+      })();
+
+      function spInitials(name) { return name.slice(0, 1); }
+
+      // 收藏講師（以 localStorage 持久化）
+      let favSpArr = [];
+      try { favSpArr = JSON.parse(localStorage.getItem('tda_fav_speakers') || '[]'); } catch (err) { favSpArr = []; }
+      const favSpeakers = new Set(favSpArr);
+      function saveFavSp() {
+        try { localStorage.setItem('tda_fav_speakers', JSON.stringify(Array.from(favSpeakers))); } catch (err) {}
+      }
+      function toggleFavSpeaker(name) {
+        if (favSpeakers.has(name)) favSpeakers.delete(name);
+        else favSpeakers.add(name);
+        saveFavSp();
+        renderMySchedule();
+      }
+
+      // 共用：建立一張講師卡片（含收藏星號）
+      function buildSpeakerCard(s) {
+        const card = document.createElement('div');
+        card.className = 'sp-card';
+        card.innerHTML =
+          '<span class="sp-avatar" style="background-image:url(' + s.photo + ')"></span>' +
+          '<div class="sp-card-info"><div class="sp-card-name">' + s.name + '</div>' +
+          '<div class="sp-card-title">' + (s.title || '講師') + ' · ' + (s.tags[0] || '學術演講') + '</div></div>' +
+          '<span class="sp-star' + (favSpeakers.has(s.name) ? ' on' : '') + '">' + STAR_SVG + '</span>';
+        card.addEventListener('click', function () { openSpeakerProfile(s); });
+        card.querySelector('.sp-star').addEventListener('click', function (e) {
+          e.stopPropagation();
+          toggleFavSpeaker(s.name);
+          this.classList.toggle('on', favSpeakers.has(s.name));
+        });
+        return card;
+      }
+
+      function renderSpeakerList(filter) {
+        const kw = (filter || '').trim();
+        spList.innerHTML = '';
+        const list = SPEAKERS.filter(function (s) { return !kw || s.name.indexOf(kw) !== -1; });
+        if (!list.length) {
+          spList.innerHTML = '<div class="pg-empty">找不到符合的講師</div>';
+          return;
+        }
+        list.forEach(function (s) { spList.appendChild(buildSpeakerCard(s)); });
+      }
+
+      // 依講師資料組出簡介內容（示意資料，可自行替換）
+      function buildProfile(s) {
+        const titleWord = s.title || '講師';
+        const mainTag = s.tags[0] || '臨床牙科';
+        const profileText = s.name + ' ' + titleWord + '為' + mainTag +
+          '領域的專家，長期投入臨床診療、教學與研究工作，專精於' + s.tags.join('、') +
+          '等主題，並致力於將最新的臨床知識與技術分享給牙醫同道。';
+        const presentations = s.programs; // 保留原始物件供點擊跳轉用
+        return {
+          tagline: mainTag + '臨床與教學',
+          specialties: s.tags,
+          sections: [
+            { label: 'PROFILE 簡介', type: 'text', body: profileText },
+            { label: 'EDUCATION 學歷', type: 'edu', items: [
+              { deg: '牙醫學系 學士', inst: '國立臺灣大學', yr: '—' },
+              { deg: '臨床牙醫學 博士', inst: '國立陽明交通大學', yr: '—' },
+            ] },
+            { label: 'CURRENT ROLES 現任職務', type: 'bullets', items: [
+              '中華牙醫學會 學術委員',
+              mainTag + '專科 主治醫師',
+              '大學附設醫院 臨床指導老師',
+            ] },
+            { label: 'RECENT PRESENTATIONS 近期演講', type: 'presentations', items: presentations },
+          ],
+        };
+      }
+
+      function openSpeakerProfile(s) {
+        const prof = buildProfile(s);
+        let html =
+          '<div class="sp-card-wrap"><div class="sp-profile-card">' +
+          '<div class="sp-hero" style="background-image:url(' + s.photo + ')">' +
+            '<div class="sp-hero-fav' + (favSpeakers.has(s.name) ? ' on' : '') + '" id="spProfFav">' + STAR_SVG + '</div>' +
+            '<svg class="sp-wave" viewBox="0 0 400 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 C70,14 110,56 190,46 C270,36 300,6 400,26 L400,60 L0,60 Z" fill="#ffffff"/></svg>' +
+          '</div>' +
+          '<div class="sp-panel">' +
+            '<div class="sp-name">' + s.name + '</div>' +
+            '<div class="sp-handle">' + (s.title || '講師') + '</div>' +
+            '<div class="sp-tagline">' + prof.tagline + '</div>' +
+            '<button class="sp-btn" id="spViewSchedule"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>查看議程</button>' +
+          '</div>';
+
+        if (prof.specialties.length) {
+          html += '<div class="sp-section"><div class="sp-eyebrow">Specialties 專長</div><div class="sp-tags">' +
+            prof.specialties.map(function (t) { return '<span class="sp-tag">' + t + '</span>'; }).join('') +
+            '</div></div>';
+        }
+
+        prof.sections.forEach(function (sec) {
+          html += '<div class="sp-divider"></div><div class="sp-section"><div class="sp-eyebrow">' + sec.label + '</div>';
+          if (sec.type === 'text') {
+            html += '<p class="sp-text">' + sec.body + '</p>';
+          } else if (sec.type === 'edu') {
+            html += '<ul class="sp-edu">' + sec.items.map(function (e) {
+              return '<li><div class="left"><div class="deg">' + e.deg + '</div><div class="inst">' + e.inst + '</div></div><span class="yr">' + e.yr + '</span></li>';
+            }).join('') + '</ul>';
+          } else if (sec.type === 'bullets') {
+            html += '<ul class="sp-bullets">' + sec.items.map(function (b) { return '<li>' + b + '</li>'; }).join('') + '</ul>';
+          } else if (sec.type === 'presentations') {
+            html += '<ul class="sp-bullets">' + sec.items.map(function (pg) {
+              return '<li><span class="sp-prog-link" data-pg-title="' + pg.title.replace(/"/g, '&quot;') + '">' +
+                pg.title +
+                '<span class="sp-prog-meta">3月' + pg.day.split('/')[1] + '日 ' + pg.time + '・' + pg.room + '</span>' +
+                '</span></li>';
+            }).join('') + '</ul>';
+          }
+          html += '</div>';
+        });
+        html += '<div style="height:22px"></div>';
+        html += '</div></div>'; // sp-profile-card / sp-card-wrap
+
+        spProfBody.innerHTML = html;
+        const vsBtn = document.getElementById('spViewSchedule');
+        if (vsBtn) {
+          vsBtn.addEventListener('click', function () {
+            spProfBody.scrollTo({ top: spProfBody.scrollHeight, behavior: 'smooth' });
+          });
+        }
+        const favBtn = document.getElementById('spProfFav');
+        if (favBtn) {
+          favBtn.addEventListener('click', function () {
+            toggleFavSpeaker(s.name);
+            this.classList.toggle('on', favSpeakers.has(s.name));
+            if (!spScreen.querySelector('.scroll-area')) return;
+            renderSpeakerList(spSearch ? spSearch.value : '');
+          });
+        }
+        // 近期演講連結 → 議程詳情
+        spProfBody.querySelectorAll('.sp-prog-link[data-pg-title]').forEach(function (link) {
+          link.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var title = this.dataset.pgTitle;
+            var prog = PROGRAMS.find(function (pg) { return pg.title === title; });
+            if (prog) openProgramDetail(prog);
+          });
+        });
+        spProfScreen.classList.add('open');
+        spProfScreen.setAttribute('aria-hidden', 'false');
+        spProfBody.scrollTop = 0;
+      }
+
+      if (spCard) {
+        spCard.addEventListener('click', function (e) {
+          e.preventDefault();
+          renderSpeakerList('');
+          if (spSearch) spSearch.value = '';
+          spScreen.classList.add('open');
+          spScreen.setAttribute('aria-hidden', 'false');
+          spScreen.querySelector('.scroll-area').scrollTop = 0;
+        });
+      }
+      spBack.addEventListener('click', function () {
+        spScreen.classList.remove('open');
+        spScreen.setAttribute('aria-hidden', 'true');
+      });
+      spProfBack.addEventListener('click', function () {
+        spProfScreen.classList.remove('open');
+        spProfScreen.setAttribute('aria-hidden', 'true');
+      });
+      if (spSearch) {
+        spSearch.addEventListener('input', function () { renderSpeakerList(spSearch.value); });
+      }
+
+      // 我的議程 Program / Speaker 分頁切換
+      const msTabs = document.getElementById('msTabs');
+      if (msTabs) {
+        msTabs.querySelectorAll('.pg-tab').forEach(function (t) {
+          t.addEventListener('click', function () {
+            msTab = t.dataset.mstab;
+            msTabs.querySelectorAll('.pg-tab').forEach(function (x) { x.classList.remove('active'); });
+            t.classList.add('active');
+            renderMySchedule();
+          });
+        });
+      }
+
+      // ── 議程詳情 子頁面 ──
+      const pgDetailScreen = document.getElementById('pgDetailScreen');
+      const pgdBody = document.getElementById('pgdBody');
+      const pgdBack = document.getElementById('pgdBack');
+
+      function openProgramDetail(p) {
+        const addr = ROOM_ADDR[p.room] || p.room;
+        const tags = p.tags.map(function (t) { return '<span class="pg-tag">' + t + '</span>'; }).join('');
+        const dayLabel = '03/' + p.day.split('/')[1];
+
+        // 找對應講師資料
+        const parts = p.speaker.trim().split(/\s+/);
+        const spTitle = parts.length > 1 ? parts[parts.length - 1] : '';
+        const spName  = parts.length > 1 ? parts.slice(0, -1).join('') : p.speaker;
+        const spObj   = SPEAKERS.find(function (s) { return s.name === spName; });
+        const spPhoto = spObj ? spObj.photo : '';
+
+        var html = '';
+
+        // 標題列
+        html += '<div class="pgi-titlebar">' + p.title + '</div>';
+
+        // 時間 + 地址
+        html += '<div class="pgi-meta">' + dayLabel + '&nbsp;&nbsp;' + p.time + '</div>';
+        html += '<div class="pgi-divider"></div>';
+        html += '<div style="text-align:center;padding:10px 18px;font-size:13.5px;color:var(--gray-text);">' + addr + '</div>';
+
+        // 標籤
+        if (p.tags.length) {
+          html += '<div class="pgi-tags">' + tags + '</div>';
+        }
+
+        // 場地色條
+        html += '<div class="pgi-room-bar">' + p.room + '</div>';
+
+        // 講師區塊
+        html += '<div class="pgi-speaker" id="pgdSpCard">';
+        if (spPhoto) {
+          html += '<div class="pgi-sp-photo" style="background-image:url(' + spPhoto + ')"></div>';
+        } else {
+          html += '<div class="pgi-sp-photo" style="background:var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:var(--blue-primary);">' + spName.slice(0, 1) + '</div>';
+        }
+        html += '<div class="pgi-sp-info">';
+        html += '<div class="pgi-sp-name">' + spName + '</div>';
+        html += '<div class="pgi-sp-title">' + spTitle + '</div>';
+        if (spObj) {
+          html += '<div class="pgi-sp-eyebrow">PROFILE</div>';
+          html += '<div class="pgi-sp-excerpt">' +
+            spName + ' ' + spTitle + '為' + (spObj.tags[0] || '臨床牙科') + '領域專家，' +
+            '長期投入臨床診療、教學與研究工作。' +
+            '</div>';
+        }
+        html += '</div>';
+        html += '<div class="pgi-sp-go">›</div>';
+        html += '</div>'; // pgi-speaker
+
+        pgdBody.innerHTML = html;
+
+        // 講師區塊點擊 → 講師詳情
+        if (spObj) {
+          var spCard = pgdBody.querySelector('#pgdSpCard');
+          if (spCard) {
+            spCard.addEventListener('click', function () {
+              openSpeakerProfile(spObj);
+            });
+          }
+        }
+
+        pgDetailScreen.classList.add('open');
+        pgDetailScreen.setAttribute('aria-hidden', 'false');
+        pgdBody.scrollTop = 0;
+      }
+
+      pgdBack.addEventListener('click', function () {
+        pgDetailScreen.classList.remove('open');
+        pgDetailScreen.setAttribute('aria-hidden', 'true');
+      });
+
+      // ── 平面圖 ──
+      const mapCard        = document.getElementById('mapCard');
+      const mapListScreen  = document.getElementById('mapListScreen');
+      const mapListBack    = document.getElementById('mapListBack');
+      const mapListEl      = document.getElementById('mapList');
+      const mapDetailScreen      = document.getElementById('mapDetailScreen');
+      const mapDetailBack        = document.getElementById('mapDetailBack');
+      const mapDetailHeaderTitle = document.getElementById('mapDetailHeaderTitle');
+      const mapDetailBody        = document.getElementById('mapDetailBody');
+
+      const MAPS = [
+        { name: '世貿二樓平面圖',          desc: '第一～第五會議室',  img: 'imgs/26464bd59cda79e7d23af96638ab5850.jpg' },
+        { name: '世貿一樓A.D區平面圖',     desc: 'A、D區展覽廳',     img: 'imgs/4fe25628805758f1e820db18f8fca646.jpg' },
+        { name: 'TICC三樓大會堂平面圖',    desc: '大會堂主場地',      img: 'imgs/c48d494feb813b97b8a550991eb8e146.jpg' },
+        { name: 'TICC二樓201會議室平面圖', desc: '牙助課程場地',      img: 'imgs/ad76b3314b834173d57b18155dee5b61.jpg' },
+        { name: '參展廠商平面圖',           desc: '展覽廠商攤位配置', img: 'imgs/a24cd700c833711951d1d0180c44c2a6.jpg' },
+      ];
+
+      const MAP_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>';
+      const IMG_PLACEHOLDER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>';
+
+      MAPS.forEach(function (m) {
+        var item = document.createElement('div');
+        item.className = 'map-item';
+        item.innerHTML =
+          '<div class="map-item-icon">' + MAP_ICON + '</div>' +
+          '<div class="map-item-info">' +
+            '<div class="map-item-name">' + m.name + '</div>' +
+            '<div class="map-item-desc">' + m.desc + '</div>' +
+          '</div>' +
+          '<span class="map-item-arrow">›</span>';
+        item.addEventListener('click', function () { openMapDetail(m); });
+        mapListEl.appendChild(item);
+      });
+
+      function openMapDetail(m) {
+        mapDetailHeaderTitle.textContent = m.name;
+        var content = '<div class="map-detail-title">' + m.name + '</div>';
+        if (m.img) {
+          content +=
+            '<div class="map-detail-hint">可左右滑動查看完整圖面</div>' +
+            '<div class="map-detail-img-wrap"><img src="' + m.img + '" alt="' + m.name + '"></div>';
+        } else {
+          content +=
+            '<div class="map-detail-placeholder">' +
+              IMG_PLACEHOLDER +
+              '<strong>' + m.name + '</strong>' +
+              '<p>請將 MAPS 資料中對應項目的<br><code>img</code> 欄位設為圖片網址</p>' +
+            '</div>';
+        }
+        mapDetailBody.innerHTML = content;
+        mapDetailScreen.classList.add('open');
+        mapDetailScreen.setAttribute('aria-hidden', 'false');
+        mapDetailBody.scrollTop = 0;
+      }
+
+      if (mapCard) {
+        mapCard.addEventListener('click', function (e) {
+          e.preventDefault();
+          mapListScreen.classList.add('open');
+          mapListScreen.setAttribute('aria-hidden', 'false');
+          mapListScreen.querySelector('.scroll-area').scrollTop = 0;
+        });
+      }
+
+      mapListBack.addEventListener('click', function () {
+        mapListScreen.classList.remove('open');
+        mapListScreen.setAttribute('aria-hidden', 'true');
+      });
+
+      mapDetailBack.addEventListener('click', function () {
+        mapDetailScreen.classList.remove('open');
+        mapDetailScreen.setAttribute('aria-hidden', 'true');
+      });
+
+      // ── 論文集 ──
+      const eposterCard         = document.getElementById('eposterCard');
+      const eposterListScreen   = document.getElementById('eposterListScreen');
+      const eposterListBack     = document.getElementById('eposterListBack');
+      const eposterListEl       = document.getElementById('eposterList');
+      const eposterDetailScreen = document.getElementById('eposterDetailScreen');
+      const eposterDetailBack   = document.getElementById('eposterDetailBack');
+      const eposterDetailBody   = document.getElementById('eposterDetailBody');
+
+      var EPOSTERS = [
+        // ── 展示組 ──
+        { category: '展示組 Display', badge: '展1',
+          title: '數位牙科印模系統於複雜補綴治療之臨床應用',
+          author: '陳文龍 醫師', institute: '中山醫學大學附設醫院 補綴科',
+          sections: [
+            { label: '研究背景', text: '傳統印模材料在複雜補綴治療中存在尺寸穩定性不足及患者舒適度低等問題。隨著數位口腔掃描技術的進步，光學印模系統已逐漸成為臨床主流選擇，但其在多顆缺牙及全口重建案例中的精準度仍有待評估。' },
+            { label: '研究方法', text: '本研究收錄2022至2024年間，於本院接受三顆以上固定補綴治療之患者共48名。隨機分配為數位組（Trios 5口內掃描儀）及傳統組（Vinyl Polysiloxane印模），並以工業用CT掃描作為參考標準，比較兩組之邊緣密合度、製作時間及患者滿意度。' },
+            { label: '研究結果', text: '數位組之邊緣誤差均值為38.2±12.4 μm，顯著低於傳統組之72.6±18.9 μm（p＜0.001）。製作週期方面，數位組平均縮短4.2天。患者滿意度問卷顯示，數位組在舒適度及整體滿意度均顯著優於傳統組（p＜0.05）。' },
+            { label: '結論', text: '數位口內掃描系統在複雜補綴治療中展現出優異的精準度與患者接受度，建議於臨床常規使用，尤其適用於多顆缺牙之全口重建案例。' },
+          ]
+        },
+        { category: '展示組 Display', badge: '展2',
+          title: '骨整合植體於高齡患者之五年存活率追蹤研究',
+          author: '林佳玲 醫師', institute: '台北榮民總醫院 牙科部',
+          sections: [
+            { label: '研究背景', text: '隨著台灣邁入高齡社會，70歲以上牙缺失患者日益增多。高齡族群常伴有系統性疾病、骨質疏鬆及免疫功能下降等問題，植體治療之風險評估需更加審慎。本研究旨在分析高齡患者接受骨整合植體後之長期存活率及相關影響因子。' },
+            { label: '研究方法', text: '回溯性分析本院2018至2019年間，年齡≥70歲接受植體手術患者共62名（植體總數106顆），追蹤期至少五年。記錄植體存活率、骨吸收量、術後併發症及影響因子（含骨質密度、系統疾病、吸菸習慣）。' },
+            { label: '研究結果', text: '五年植體累積存活率為93.4%（99/106顆）。失敗案例中骨質疏鬆症患者佔71.4%，吸菸者失敗率（14.3%）顯著高於非吸菸者（4.8%）。控制良好之糖尿病患者（HbA1c＜7%）存活率與健康對照組無顯著差異（p=0.82）。' },
+            { label: '結論', text: '高齡患者植體治療可達可接受之長期存活率，但骨質疏鬆及吸菸為主要風險因子。術前完善評估及術後嚴密追蹤為提升高齡族群植體成功率之關鍵。' },
+          ]
+        },
+        { category: '展示組 Display', badge: '展3',
+          title: '無托槽矯正器治療成人前牙擁擠之三維精準度評估',
+          author: '許雅婷 醫師', institute: '台灣大學醫學院附設醫院 齒顎矯正科',
+          sections: [
+            { label: '研究背景', text: '無托槽隱形矯正器近年在成人矯正市場快速成長，患者對其美觀性及舒適性評價甚高。然而其在複雜牙移動方面的精準度仍具爭議，本研究利用三維數位模型比較計畫移動量與實際移動量之差異。' },
+            { label: '研究方法', text: '選取2022至2023年間，以無托槽矯正器治療前牙中度擁擠患者36名，利用ClinCheck預測模型與治療前後口內掃描數據進行重疊比對，分析每顆牙齒之傾斜度、旋轉及移動誤差，計算整體精準率。' },
+            { label: '研究結果', text: '牙齒整體移動精準率為78.3%，切齒旋轉之精準率最低（61.2%），傾斜移動精準率最高（88.7%）。配戴順從性較高之患者（每日逾20小時）精準率顯著優於低順從性組（82.1% vs 68.4%，p＜0.01）。' },
+            { label: '結論', text: '無托槽矯正器在前牙傾斜移動方面表現良好，但旋轉控制仍有改進空間。提升患者配戴順從性為確保治療精準度之重要關鍵因素。' },
+          ]
+        },
+        { category: '展示組 Display', badge: '展4',
+          title: '富血小板血漿輔助牙周手術之隨機對照臨床試驗',
+          author: '張志偉 醫師', institute: '長庚醫療財團法人林口長庚紀念醫院',
+          sections: [
+            { label: '研究背景', text: '富血小板血漿（PRP）因含高濃度生長因子，被廣泛應用於促進組織再生。然而其在牙周翻瓣手術中的輔助療效目前仍存在研究差異，缺乏一致性結論。' },
+            { label: '研究方法', text: '採隨機對照試驗設計，納入重度慢性牙周炎患者30名（骨缺損深度≥5mm）。實驗組在牙周翻瓣清創術後加入PRP凝膠，對照組單純清創，於術後3、6及12個月評估探針深度、臨床附著增益及牙槽骨再生量。' },
+            { label: '研究結果', text: '術後12個月，PRP組探針深度改善均值為3.8±0.7mm，顯著優於對照組之2.9±0.6mm（p=0.04）。臨床附著增益PRP組為2.6±0.8mm，對照組為1.9±0.7mm（p=0.03）。' },
+            { label: '結論', text: 'PRP輔助牙周翻瓣手術在探針深度改善及臨床附著增益方面具統計顯著正向效益，建議可納入重度牙周炎之輔助治療方案。' },
+          ]
+        },
+        // ── 競賽組 ──
+        { category: '競賽組基礎研究 Competition', badge: '競1',
+          title: '深度學習模型於根尖X光片齲齒自動偵測之研究',
+          author: '蘇雅琪 醫師', institute: '國防醫學院三軍總醫院 牙科部',
+          sections: [
+            { label: '研究背景', text: '齲齒為全球最普遍之口腔疾病，早期診斷對於保存牙齒結構至關重要。人工智慧影像辨識技術在醫學影像診斷領域已展現高度潛力。本研究旨在開發並驗證一套基於深度學習之根尖X光片齲齒自動偵測系統。' },
+            { label: '研究方法', text: '收集本院2018至2023年間根尖X光片共4,820張，由兩位資深牙科醫師標記齲齒位置作為金標準訓練資料。採用YOLOv8架構進行模型訓練，以80:10:10比例劃分訓練、驗證及測試集，計算敏感度、特異度及AUC值。' },
+            { label: '研究結果', text: '模型於測試集之敏感度為89.3%，特異度為91.7%，AUC為0.943。與兩位牙科醫師之診斷一致性（Kappa值）分別為0.81及0.78。模型對鄰接面早期齲齒之偵測率（82.4%）顯著優於一般臨床目視檢查（67.1%，p＜0.001）。' },
+            { label: '結論', text: '本研究開發之深度學習模型在根尖X光片齲齒偵測上達到接近資深醫師之診斷準確率，具備輔助臨床診斷及降低漏診率之潛力，未來可整合至數位X光閱片系統中實際應用。' },
+          ]
+        },
+        { category: '競賽組基礎研究 Competition', badge: '競2',
+          title: '牙齦卟啉單胞菌脂多醣誘導血管內皮細胞發炎之分子機制',
+          author: '王俊豪 醫師', institute: '成功大學醫學院附設醫院 口腔醫學部',
+          sections: [
+            { label: '研究背景', text: '流行病學研究已顯示牙周炎與心血管疾病之間存在顯著關聯。牙齦卟啉單胞菌（P. gingivalis）為重度牙周炎之關鍵致病菌，其脂多醣（LPS）可能透過誘導全身性發炎反應影響心血管健康，然詳細分子機制仍不明確。' },
+            { label: '研究方法', text: '以人臍靜脈內皮細胞（HUVEC）為細胞模型，給予不同濃度之P. gingivalis LPS（0.1、1、10 μg/mL）刺激，於6、12及24小時後檢測IL-6、TNF-α、ICAM-1等發炎因子表達（ELISA及西方墨點法），並分析NF-κB信號路徑之活化程度。' },
+            { label: '研究結果', text: 'P. gingivalis LPS以劑量及時間依賴性方式誘導HUVEC中IL-6（最高增加8.3倍）、TNF-α（最高增加6.1倍）及ICAM-1（最高增加4.7倍）表達上調。在10 μg/mL LPS刺激下，核內p65蛋白量於6小時達峰值（增加3.2倍，p＜0.001）。' },
+            { label: '結論', text: '本研究確認P. gingivalis LPS透過NF-κB信號路徑誘導血管內皮細胞發炎反應，為牙周炎促進動脈粥樣硬化提供重要分子依據，亦支持積極治療牙周炎對心血管疾病預防之必要性。' },
+          ]
+        },
+        { category: '競賽組基礎研究 Competition', badge: '競3',
+          title: '乳牙根管填充材料生物相容性之體外比較研究',
+          author: '李宜蓁 醫師', institute: '馬偕醫療財團法人馬偕紀念醫院 兒童牙科',
+          sections: [
+            { label: '研究背景', text: '乳牙根管治療之填充材料需兼具生物相容性、可吸收性及抗菌效果，以配合乳牙自然脫落並避免影響繼生齒發育。目前市面上有多種材料可供選擇，但對人類牙周韌帶細胞之毒性比較研究仍不充足。' },
+            { label: '研究方法', text: '比較四種常用乳牙根管填充材料：ZOE（氧化鋅丁香油糊）、Vitapex（碘仿-氫氧化鈣）、MTA（礦物三氧化物聚合物）及Biodentine。以人類牙周韌帶細胞（PDL cells）進行體外細胞毒性試驗（MTT assay），於24、48及72小時評估細胞存活率，並以流式細胞術分析細胞凋亡率。' },
+            { label: '研究結果', text: '72小時細胞存活率：Biodentine（92.3%）> MTA（88.7%）> Vitapex（74.1%）> ZOE（61.8%）。ZOE組在24小時即可觀察到顯著細胞毒性（p＜0.001），而Biodentine與MTA組在各時間點均維持超過85%存活率。' },
+            { label: '結論', text: '在測試的四種材料中，Biodentine及MTA展現最佳生物相容性，建議優先作為乳牙根管填充材料。ZOE雖仍廣泛使用，但其體外細胞毒性結果提示臨床使用時應謹慎評估適應症。' },
+          ]
+        },
+        { category: '競賽組基礎研究 Competition', badge: '競4',
+          title: '全瓷冠修復體於後牙區十年臨床存活率分析',
+          author: '黃建文 醫師', institute: '中國醫藥大學附設醫院 牙科學部',
+          sections: [
+            { label: '研究背景', text: '隨著全瓷冠材料技術的進步，氧化鋯及二矽酸鋰玻璃陶瓷已被廣泛應用於後牙修復。然而後牙區承受較大咬合力，長期存活率及失敗模式仍需持續監測，以提供臨床選材依據。' },
+            { label: '研究方法', text: '回溯性分析本院2012至2014年間完成之後牙全瓷冠共287顆（氧化鋯178顆、二矽酸鋰109顆），追蹤至2024年（均值9.8±0.7年）。記錄修復體存活情形、失敗類型及相關因子（對咬牙材料、牙周狀況、夜間磨牙）。' },
+            { label: '研究結果', text: '十年累積存活率：氧化鋯組94.1%，二矽酸鋰組89.9%，兩組間無統計顯著差異（p=0.18）。主要失敗模式：氧化鋯組以黏著失敗為主（71.4%），二矽酸鋰組以崩瓷為主（63.6%）。有夜間磨牙者失敗率顯著較高（OR=3.4，95% CI: 1.8–6.5）。' },
+            { label: '結論', text: '氧化鋯及二矽酸鋰全瓷冠在後牙區均能達到良好之十年存活率。夜間磨牙為最重要危險因子，建議此類患者配戴咬合板保護，臨床選材時可依位置、對咬牙材料及美觀需求綜合考量。' },
+          ]
+        },
+      ];
+
+      // 建立列表
+      var lastCategory = '';
+      EPOSTERS.forEach(function (ep) {
+        if (ep.category !== lastCategory) {
+          var lbl = document.createElement('div');
+          lbl.className = 'ep-section-label';
+          lbl.textContent = ep.category;
+          eposterListEl.appendChild(lbl);
+          lastCategory = ep.category;
+        }
+        var item = document.createElement('div');
+        item.className = 'ep-item';
+        item.innerHTML =
+          '<div class="ep-item-no">' + ep.badge + '</div>' +
+          '<div class="ep-item-info">' +
+            '<div class="ep-item-title">' + ep.title + '</div>' +
+            '<div class="ep-item-meta">' + ep.author + '・' + ep.institute + '</div>' +
+          '</div>' +
+          '<span class="ep-item-arrow">›</span>';
+        item.addEventListener('click', function () { openEposterDetail(ep); });
+        eposterListEl.appendChild(item);
+      });
+
+      function openEposterDetail(ep) {
+        var html =
+          '<div class="ep-detail-titlebar">' +
+            '<div class="ep-detail-category">' + ep.category + '</div>' +
+            '<div class="ep-detail-title">' + ep.title + '</div>' +
+          '</div>' +
+          '<div class="ep-detail-author-block">' +
+            '<div class="ep-detail-author">' + ep.author + '</div>' +
+            '<div class="ep-detail-institute">' + ep.institute + '</div>' +
+          '</div>' +
+          '<div class="ep-content">';
+        ep.sections.forEach(function (s) {
+          html += '<div><div class="ep-section-eyebrow">' + s.label + '</div>' +
+                  '<p class="ep-body-text">' + s.text + '</p></div>';
+        });
+        html += '</div>';
+        eposterDetailBody.innerHTML = html;
+        eposterDetailScreen.classList.add('open');
+        eposterDetailScreen.setAttribute('aria-hidden', 'false');
+        eposterDetailBody.scrollTop = 0;
+      }
+
+      if (eposterCard) {
+        eposterCard.addEventListener('click', function (e) {
+          e.preventDefault();
+          eposterListScreen.classList.add('open');
+          eposterListScreen.setAttribute('aria-hidden', 'false');
+          eposterListScreen.querySelector('.scroll-area').scrollTop = 0;
+        });
+      }
+
+      eposterListBack.addEventListener('click', function () {
+        eposterListScreen.classList.remove('open');
+        eposterListScreen.setAttribute('aria-hidden', 'true');
+      });
+
+      eposterDetailBack.addEventListener('click', function () {
+        eposterDetailScreen.classList.remove('open');
+        eposterDetailScreen.setAttribute('aria-hidden', 'true');
+      });
+
+      // ── Offcanvas 漢堡選單 ──
+      const menuBtn       = document.getElementById('menuBtn');
+      const menuBackdrop  = document.getElementById('menuBackdrop');
+      const menuOffcanvas = document.getElementById('menuOffcanvas');
+
+      function openMenu() {
+        menuBackdrop.classList.add('open');
+        menuOffcanvas.classList.add('open');
+      }
+      function closeMenu() {
+        menuBackdrop.classList.remove('open');
+        menuOffcanvas.classList.remove('open');
+      }
+      if (menuBtn) menuBtn.addEventListener('click', openMenu);
+      menuBackdrop.addEventListener('click', closeMenu);
+
+      function menuNavigate(fn) { closeMenu(); setTimeout(fn, 220); }
+
+      document.getElementById('menuItemLogin').addEventListener('click', function () {
+        menuNavigate(function () {
+          if (qrLoginInput) qrLoginInput.value = '';
+          if (qrLoginError) qrLoginError.classList.remove('show');
+          qrLoginScreen.classList.add('open');
+          qrLoginScreen.setAttribute('aria-hidden', 'false');
+        });
+      });
+      document.getElementById('menuItemFav').addEventListener('click', function () {
+        menuNavigate(function () {
+          renderMySchedule();
+          myScreen.classList.add('open');
+          myScreen.setAttribute('aria-hidden', 'false');
+          myScreen.querySelector('.scroll-area').scrollTop = 0;
+        });
+      });
+      document.getElementById('menuItemOrg').addEventListener('click', function () {
+        menuNavigate(function () {
+          orgScreen.classList.add('open');
+          orgScreen.setAttribute('aria-hidden', 'false');
+          orgScreen.querySelector('.scroll-area').scrollTop = 0;
+        });
+      });
+      document.getElementById('menuItemPresident').addEventListener('click', function () {
+        menuNavigate(function () {
+          presidentScreen.classList.add('open');
+          presidentScreen.setAttribute('aria-hidden', 'false');
+          presidentScreen.querySelector('.scroll-area').scrollTop = 0;
+        });
+      });
+      document.getElementById('menuItemNotif').addEventListener('click', function () {
+        menuNavigate(function () {
+          renderNotifList();
+          notifListScreen.classList.add('open');
+          notifListScreen.setAttribute('aria-hidden', 'false');
+          notifListScreen.querySelector('.scroll-area').scrollTop = 0;
+        });
+      });
+      document.getElementById('menuItemContact').addEventListener('click', function () {
+        menuNavigate(function () {
+          contactScreen.classList.add('open');
+          contactScreen.setAttribute('aria-hidden', 'false');
+          contactScreen.querySelector('.scroll-area').scrollTop = 0;
+        });
+      });
+
+      // ── 推播 ──
+      const NOTIFICATIONS = [
+        {
+          datetime: '2026/3/15 16:20',
+          title: '大會閉幕式暨頒獎典禮即將開始',
+          preview: '中華牙醫學會年度學術大會閉幕式將於今日17:00在TICC大會堂舉行，誠邀所有與會者蒞臨參加…',
+          body: '中華牙醫學會年度學術大會閉幕式將於今日17:00在台北國際會議中心TICC大會堂舉行，誠邀所有與會者蒞臨參加。本次大會競賽組優秀論文頒獎典禮亦同步於閉幕式中舉行。感謝所有投稿者的積極參與，亦感謝各位講師與廠商的鼎力支持，期待明年再相聚，共同推進台灣牙科醫學的發展。'
+        },
+        {
+          datetime: '2026/3/15 11:30',
+          title: '下午場次提醒：熱門演講座位有限',
+          preview: '提醒您下午13:00起各會議室將陸續開放入場，部分演講廳座位有限，建議提早抵達…',
+          body: '提醒您下午13:00起各會議室將陸續開放入場。今日下午「全瓷冠修復新技術」及「植牙微創手術工作坊」等熱門場次座位有限，建議提早抵達就座。如有需要，請至一樓服務台詢問備用場次資訊。場地配置請參閱APP平面圖功能，確認各演講廳位置。'
+        },
+        {
+          datetime: '2026/3/15 08:00',
+          title: '大會第二天正式開始，早餐茶點已備妥',
+          preview: '2026中華牙醫學會年度學術大會第二天正式開始！首場主題演講09:00於TICC大會堂開始…',
+          body: '2026中華牙醫學會年度學術大會第二天正式開始！首場主題演講將於09:00在TICC大會堂開始，請各位與會者提早就座。今日一樓大廳備有早餐茶點，歡迎享用。繼續教育積分入場感應站已全面啟動，各演講廳入口均設有感應設備，入場請記得刷識別證以累計積分。'
+        },
+        {
+          datetime: '2026/3/14 17:30',
+          title: '首日活動圓滿，明日精彩議程預告',
+          preview: '感謝各位今日的熱情參與！明日（3/15）精彩議程將持續進行，重點包含「數位牙科新趨勢」主題論壇…',
+          body: '感謝各位今日蒞臨2026中華牙醫學會年度學術大會，首日活動圓滿結束！明日（3/15）精彩議程將持續進行，重點包含「數位牙科新趨勢」主題論壇、全口重建研討會，以及下午的競賽組論文頒獎典禮。今晚大會晚宴將於18:30在台北喜來登大飯店舉行，敬請持晚宴券準時入場。期待明日再與您相聚。'
+        },
+        {
+          datetime: '2026/3/14 08:30',
+          title: '歡迎蒞臨！2026年度學術大會正式開幕',
+          preview: '2026中華牙醫學會年度學術大會今日正式開幕！感謝各位牙科先進的到來，本次大會邀請超過80位國內外講師…',
+          body: '2026中華牙醫學會年度學術大會今日正式開幕！感謝各位牙科先進的到來。開幕式由理事長致詞，並由多位貴賓共同宣告大會正式啟動。本次大會邀請超過80位國內外知名講師，提供近200場學術演講，涵蓋植牙、矯正、根管、美容牙科、口腔外科等各專科領域。歡迎充分利用APP規劃您的參會行程，並收藏感興趣的演講與廠商。'
+        },
+      ];
+
+      const notifListScreen   = document.getElementById('notifListScreen');
+      const notifListBack     = document.getElementById('notifListBack');
+      const notifListEl       = document.getElementById('notifList');
+      const notifDetailScreen = document.getElementById('notifDetailScreen');
+      const notifDetailBack   = document.getElementById('notifDetailBack');
+      const notifDetailBody   = document.getElementById('notifDetailBody');
+      const contactScreen     = document.getElementById('contactScreen');
+      const contactBack       = document.getElementById('contactBack');
+      const orgScreen         = document.getElementById('orgScreen');
+      const orgBack           = document.getElementById('orgBack');
+      const presidentScreen   = document.getElementById('presidentScreen');
+      const presidentBack     = document.getElementById('presidentBack');
+
+      orgBack.addEventListener('click', function () {
+        orgScreen.classList.remove('open');
+        orgScreen.setAttribute('aria-hidden', 'true');
+      });
+      presidentBack.addEventListener('click', function () {
+        presidentScreen.classList.remove('open');
+        presidentScreen.setAttribute('aria-hidden', 'true');
+      });
+
+      function renderNotifList() {
+        notifListEl.innerHTML = NOTIFICATIONS.map(function (n, i) {
+          return '<div class="notif-item" data-idx="' + i + '">' +
+            '<div class="notif-dot"></div>' +
+            '<div class="notif-item-body">' +
+              '<div class="notif-item-time">' + n.datetime + '</div>' +
+              '<div class="notif-item-title">' + n.title + '</div>' +
+              '<div class="notif-item-preview">' + n.preview + '</div>' +
+            '</div>' +
+            '<span class="notif-item-arrow">›</span>' +
+          '</div>';
+        }).join('');
+        notifListEl.querySelectorAll('.notif-item').forEach(function (el) {
+          el.addEventListener('click', function () {
+            openNotifDetail(NOTIFICATIONS[+this.dataset.idx]);
+          });
+        });
+      }
+
+      function openNotifDetail(n) {
+        notifDetailBody.innerHTML =
+          '<div class="notif-det-time">' + n.datetime + '</div>' +
+          '<div class="notif-det-title">' + n.title + '</div>' +
+          '<div class="notif-det-body">' + n.body + '</div>';
+        notifDetailScreen.classList.add('open');
+        notifDetailScreen.setAttribute('aria-hidden', 'false');
+        notifDetailBody.scrollTop = 0;
+      }
+
+      notifListBack.addEventListener('click', function () {
+        notifListScreen.classList.remove('open');
+        notifListScreen.setAttribute('aria-hidden', 'true');
+      });
+      notifDetailBack.addEventListener('click', function () {
+        notifDetailScreen.classList.remove('open');
+        notifDetailScreen.setAttribute('aria-hidden', 'true');
+      });
+      contactBack.addEventListener('click', function () {
+        contactScreen.classList.remove('open');
+        contactScreen.setAttribute('aria-hidden', 'true');
+      });
+
+      // ── 名牌 3D Card ──
+      (function () {
+        var nameBadgeNav    = document.getElementById('nameBadgeNav');
+        var nameBadgeScreen = document.getElementById('nameBadgeScreen');
+        var nameBadgeBack   = document.getElementById('nameBadgeBack');
+        var badgeCard       = document.getElementById('badgeCard');
+        var badgeHolo       = document.getElementById('badgeHolo');
+        var tiltRAF         = null;
+        var isInteracting   = false;
+
+        function openBadge(e) {
+          if (e) e.preventDefault();
+          nameBadgeScreen.classList.add('open');
+          nameBadgeScreen.setAttribute('aria-hidden', 'false');
+        }
+        function closeBadge() {
+          nameBadgeScreen.classList.remove('open');
+          nameBadgeScreen.setAttribute('aria-hidden', 'true');
+          resetCard();
+        }
+
+        function applyTilt(rx, ry, mx, my) {
+          if (tiltRAF) cancelAnimationFrame(tiltRAF);
+          tiltRAF = requestAnimationFrame(function () {
+            var angle = (Math.atan2(ry, rx) * 180 / Math.PI + 360) % 360;
+            badgeCard.style.transform =
+              'perspective(900px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) scale(1.04)';
+            badgeHolo.style.setProperty('--mx', mx + '%');
+            badgeHolo.style.setProperty('--my', my + '%');
+            badgeHolo.style.setProperty('--angle', angle + 'deg');
+          });
+        }
+
+        function resetCard() {
+          isInteracting = false;
+          badgeCard.classList.remove('tilting');
+          badgeCard.style.transform = '';
+          badgeHolo.style.removeProperty('--mx');
+          badgeHolo.style.removeProperty('--my');
+          badgeHolo.style.removeProperty('--angle');
+        }
+
+        // Mouse
+        badgeCard.addEventListener('mousemove', function (e) {
+          isInteracting = true;
+          badgeCard.classList.add('tilting');
+          var rect = badgeCard.getBoundingClientRect();
+          var dx = (e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2);
+          var dy = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
+          var mx = (e.clientX - rect.left) / rect.width  * 100;
+          var my = (e.clientY - rect.top)  / rect.height * 100;
+          applyTilt(-dy * 22, dx * 22, mx, my);
+        });
+        badgeCard.addEventListener('mouseleave', resetCard);
+
+        // Touch
+        badgeCard.addEventListener('touchmove', function (e) {
+          var touch = e.touches[0];
+          isInteracting = true;
+          badgeCard.classList.add('tilting');
+          var rect = badgeCard.getBoundingClientRect();
+          var dx = (touch.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2);
+          var dy = (touch.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
+          var mx = (touch.clientX - rect.left) / rect.width  * 100;
+          var my = (touch.clientY - rect.top)  / rect.height * 100;
+          applyTilt(-dy * 22, dx * 22, mx, my);
+        }, { passive: true });
+        badgeCard.addEventListener('touchend', resetCard);
+
+        // Gyroscope (mobile)
+        var gyroEnabled = false;
+        function enableGyro() {
+          if (gyroEnabled) return;
+          gyroEnabled = true;
+          window.addEventListener('deviceorientation', function (e) {
+            if (!nameBadgeScreen.classList.contains('open') || isInteracting) return;
+            var rx = Math.max(-20, Math.min(20, (e.beta  || 0) - 40));
+            var ry = Math.max(-20, Math.min(20,  e.gamma || 0));
+            badgeCard.classList.add('tilting');
+            var mx = (ry / 40 + 0.5) * 100;
+            var my = (rx / 40 + 0.5) * 100;
+            applyTilt(-rx * 0.8, ry * 0.8, mx, my);
+          });
+        }
+
+        // ── Starfield Canvas ──
+        var canvas = document.getElementById('badgeCanvas');
+        var ctx = canvas ? canvas.getContext('2d') : null;
+        var stars = [];
+        var starRAF = null;
+        var parallaxX = 0, parallaxY = 0;
+
+        function initStars() {
+          if (!canvas) return;
+          canvas.width  = canvas.offsetWidth  || canvas.parentElement.offsetWidth;
+          canvas.height = canvas.offsetHeight || canvas.parentElement.offsetHeight;
+          stars = [];
+          var W = canvas.width, H = canvas.height;
+          // Three depth layers
+          var layers = [
+            { count: 120, rMin: 0.2, rMax: 0.7,  aMin: 0.2, aMax: 0.6,  speed: 0.08 },
+            { count:  60, rMin: 0.6, rMax: 1.2,  aMin: 0.4, aMax: 0.85, speed: 0.18 },
+            { count:  20, rMin: 1.2, rMax: 2.2,  aMin: 0.6, aMax: 1.0,  speed: 0.30 }
+          ];
+          layers.forEach(function (l) {
+            for (var i = 0; i < l.count; i++) {
+              stars.push({
+                x:     Math.random() * W,
+                y:     Math.random() * H,
+                r:     l.rMin + Math.random() * (l.rMax - l.rMin),
+                a:     l.aMin + Math.random() * (l.aMax - l.aMin),
+                da:    (Math.random() > 0.5 ? 1 : -1) * (0.003 + Math.random() * 0.006),
+                aMin:  l.aMin,
+                aMax:  l.aMax,
+                speed: l.speed,
+                blue:  Math.random() > 0.75,
+                layer: l.speed
+              });
+            }
+          });
+        }
+
+        function drawStars() {
+          if (!ctx) return;
+          var W = canvas.width, H = canvas.height;
+          ctx.clearRect(0, 0, W, H);
+          ctx.fillStyle = '#000';
+          ctx.fillRect(0, 0, W, H);
+          // Subtle deep nebula glow
+          var nebula = ctx.createRadialGradient(W * 0.4, H * 0.35, 0, W * 0.4, H * 0.35, W * 0.55);
+          nebula.addColorStop(0, 'rgba(20,50,120,0.18)');
+          nebula.addColorStop(1, 'transparent');
+          ctx.fillStyle = nebula;
+          ctx.fillRect(0, 0, W, H);
+
+          ctx.save();
+          ctx.translate(parallaxX, parallaxY);
+          stars.forEach(function (s) {
+            // Twinkle
+            s.a += s.da;
+            if (s.a >= s.aMax || s.a <= s.aMin) s.da *= -1;
+            // Slow drift
+            s.y += s.speed;
+            if (s.y > H + 2) { s.y = -2; s.x = Math.random() * W; }
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fillStyle = s.blue ? '#93c5fd' : '#ffffff';
+            ctx.globalAlpha = Math.max(0, Math.min(1, s.a));
+            ctx.fill();
+            // Bright stars get a soft glow
+            if (s.r > 1.4) {
+              ctx.beginPath();
+              ctx.arc(s.x, s.y, s.r * 3, 0, Math.PI * 2);
+              var grd = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 3);
+              grd.addColorStop(0, s.blue ? 'rgba(147,197,253,0.25)' : 'rgba(255,255,255,0.18)');
+              grd.addColorStop(1, 'transparent');
+              ctx.fillStyle = grd;
+              ctx.globalAlpha = s.a;
+              ctx.fill();
+            }
+            ctx.globalAlpha = 1;
+          });
+          ctx.restore();
+          starRAF = requestAnimationFrame(drawStars);
+        }
+
+        function startStars() {
+          if (!canvas) return;
+          initStars();
+          if (starRAF) cancelAnimationFrame(starRAF);
+          drawStars();
+        }
+        function stopStars() {
+          if (starRAF) { cancelAnimationFrame(starRAF); starRAF = null; }
+        }
+
+        // Patch applyTilt to add parallax
+        var _origApplyTilt = applyTilt;
+        applyTilt = function (rx, ry, mx, my) {
+          _origApplyTilt(rx, ry, mx, my);
+          parallaxX = -ry * 1.2;
+          parallaxY =  rx * 0.8;
+        };
+        var _origResetCard = resetCard;
+        resetCard = function () {
+          _origResetCard();
+          parallaxX = 0; parallaxY = 0;
+        };
+
+        if (nameBadgeNav) nameBadgeNav.addEventListener('click', function (e) {
+          e.preventDefault();
+          openBadge();
+          setTimeout(startStars, 50);
+          if (window.DeviceOrientationEvent) enableGyro();
+        });
+        nameBadgeBack.addEventListener('click', function () {
+          closeBadge();
+          stopStars();
+        });
+      })();
+
+      // ── QR 報到 ──
+      const qrCard         = document.getElementById('qrCard');
+      const qrLoginScreen  = document.getElementById('qrLoginScreen');
+      const qrLoginBack    = document.getElementById('qrLoginBack');
+      const qrLoginInput   = document.getElementById('qrLoginInput');
+      const qrLoginBtn     = document.getElementById('qrLoginBtn');
+      const qrLoginError   = document.getElementById('qrLoginError');
+      const qrDetailScreen = document.getElementById('qrDetailScreen');
+      const qrDetailBack   = document.getElementById('qrDetailBack');
+
+      const QR_VALID_CODE = 'F1234567890123';
+
+      if (qrCard) {
+        qrCard.addEventListener('click', function (e) {
+          e.preventDefault();
+          qrLoginInput.value = '';
+          qrLoginError.classList.remove('show');
+          qrLoginScreen.classList.add('open');
+          qrLoginScreen.setAttribute('aria-hidden', 'false');
+        });
+      }
+      qrLoginBack.addEventListener('click', function () {
+        qrLoginScreen.classList.remove('open');
+        qrLoginScreen.setAttribute('aria-hidden', 'true');
+        qrDetailScreen.classList.remove('open');
+        qrDetailScreen.setAttribute('aria-hidden', 'true');
+      });
+      qrDetailBack.addEventListener('click', function () {
+        qrDetailScreen.classList.remove('open');
+        qrDetailScreen.setAttribute('aria-hidden', 'true');
+      });
+      qrLoginBtn.addEventListener('click', function () {
+        var val = qrLoginInput.value.trim().replace(/\s/g, '');
+        if (val === QR_VALID_CODE) {
+          qrLoginError.classList.remove('show');
+          qrDetailScreen.classList.add('open');
+          qrDetailScreen.setAttribute('aria-hidden', 'false');
+          qrDetailScreen.querySelector('.scroll-area').scrollTop = 0;
+        } else {
+          qrLoginError.classList.add('show');
+        }
+      });
+      qrLoginInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') qrLoginBtn.click();
+      });
+
+      // ── 大會資訊 ──
+      const INFO_ITEMS = [
+        {
+          title: '無法登入App',
+          subtitle: '僅大會正式報名者可登入',
+          sections: [
+            { label: '登入資格', text: '中華牙醫學會年度學術大會APP僅提供本次大會正式報名參與者使用。如您已完成報名並繳費，請使用報名時填寫的電子信箱及密碼進行登入。' },
+            { label: '忘記密碼', text: '如忘記密碼，請點選登入頁面的「忘記密碼」，系統將寄送重設密碼連結至您的電子信箱。請確認信箱是否正確，並查看垃圾郵件資料夾。' },
+            { label: '聯絡客服', text: '如問題持續發生，請洽中華牙醫學會秘書處：\n電話：02-2351-4531\n電子郵件：service@cda.org.tw\n服務時間：週一至週五 09:00–17:00' },
+          ]
+        },
+        {
+          title: '如何查看學術演講議程',
+          subtitle: '議程瀏覽與收藏功能說明',
+          sections: [
+            { label: '瀏覽議程', text: '點選主畫面「學術演講」即可進入完整議程列表。可依日期切換，查看當日所有場次、演講題目及主講人資訊。' },
+            { label: '收藏議程', text: '點選議程卡片右上角的星星符號，即可將該場演講加入「我的議程」。收藏後可隨時在我的議程中快速查閱，方便規劃個人參會行程。' },
+            { label: '查看演講詳情', text: '點擊任一議程卡片可進入演講詳情頁面，內含完整演講摘要、主講人簡介、演講地點及時間等資訊。' },
+          ]
+        },
+        {
+          title: '中華牙醫學會APP完整功能說明',
+          subtitle: '各頁面功能一覽',
+          sections: [
+            { label: '學術演講', text: '提供大會全程學術議程，包含主題演講、專題討論、工作坊等各類場次，支援依日期篩選及收藏功能。' },
+            { label: '講師介紹', text: '收錄所有受邀講師的學經歷、研究專長及近期發表，可搜尋特定講師並一鍵收藏。' },
+            { label: '平面圖', text: '提供世界貿易中心及台北國際會議中心（TICC）各樓層平面圖，方便確認演講廳、展場及服務台位置。' },
+            { label: '論文集', text: '收錄本屆大會所有壁報論文及競賽組研究摘要，分類展示，方便查閱各研究成果。' },
+            { label: '參展廠商', text: '依產品類別列出所有參展廠商，包含廠商簡介、展位位置及產品展示，可收藏感興趣的廠商。' },
+            { label: '我的議程', text: '集中管理您收藏的學術演講、講師及參展廠商，方便在大會期間快速查詢。' },
+          ]
+        },
+        {
+          title: '大會場地與交通資訊',
+          subtitle: '世貿中心及TICC交通指引',
+          sections: [
+            { label: '主要場地', text: '本屆學術大會主要場地分為世界貿易中心（台北市信義路五段5號）及台北國際會議中心TICC（台北市信義路五段1號）。兩處場地相鄰，步行約3分鐘可達。' },
+            { label: '捷運', text: '搭乘台北捷運至「台北101/世貿站」1號出口，步行約5分鐘即可抵達。' },
+            { label: '公車', text: '多條公車路線停靠「世貿中心」站，包含20、22、33、37、225、282、286、298路等，請依實際需求選擇。' },
+            { label: '自行開車', text: '場地設有付費停車場，但大會期間停車位有限，建議盡量使用大眾運輸工具前往。' },
+          ]
+        },
+        {
+          title: '大會重要規範與注意事項',
+          subtitle: '入場憑證、著裝及會場規定',
+          sections: [
+            { label: '入場憑證', text: '請攜帶您的電子或實體入場證，進入所有大會場地及演講廳時均需出示。未配戴識別證者，工作人員有權拒絕入場。' },
+            { label: '演講廳規定', text: '演講進行中請將手機調整至靜音或震動模式。部分場次禁止錄音錄影，請遵守主持人指示。為維護聽講品質，請勿在演講進行中大聲交談。' },
+            { label: '繼續教育積分', text: '本次大會多數學術場次可申請繼續教育積分。積分申請需憑識別證掃描入場紀錄，請務必確實刷證入場。積分核發將於大會結束後30個工作日內辦理。' },
+            { label: '飲食規定', text: '各演講廳內謝絕飲食，請在休息廳或指定區域用餐。大會提供午餐服務，詳情請參閱大會手冊或詢問服務台工作人員。' },
+          ]
+        },
+        {
+          title: '如何返回主畫面',
+          subtitle: '導覽列與頁面切換說明',
+          sections: [
+            { label: '返回上一頁', text: '各子頁面左上角均有「返回」按鈕，點擊即可回到上一頁面。' },
+            { label: '回到主畫面', text: '點選畫面下方導覽列的「首頁」圖示，即可隨時回到APP主畫面。' },
+            { label: '底部導覽列', text: 'APP底部導覽列提供首頁、地圖、照片、我的等快速入口，可快速切換各主要功能頁面。' },
+          ]
+        },
+      ];
+
+      const infoCard         = document.getElementById('infoCard');
+      const infoListScreen   = document.getElementById('infoListScreen');
+      const infoListBack     = document.getElementById('infoListBack');
+      const infoListEl       = document.getElementById('infoList');
+      const infoDetailScreen = document.getElementById('infoDetailScreen');
+      const infoDetailBack   = document.getElementById('infoDetailBack');
+      const infoDetailBody   = document.getElementById('infoDetailBody');
+
+      var INFO_ICONS = [
+        '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>',
+        '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+        '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
+        '<polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/>',
+        '<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+        '<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
+      ];
+
+      function renderInfoList() {
+        infoListEl.innerHTML = INFO_ITEMS.map(function (item, i) {
+          return '<div class="info-item" data-idx="' + i + '">' +
+            '<div class="info-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + INFO_ICONS[i % INFO_ICONS.length] + '</svg></div>' +
+            '<div class="info-item-body">' +
+              '<div class="info-item-title">' + item.title + '</div>' +
+              '<div class="info-item-sub">' + item.subtitle + '</div>' +
+            '</div>' +
+            '<span class="info-item-arrow">›</span>' +
+          '</div>';
+        }).join('');
+        infoListEl.querySelectorAll('.info-item').forEach(function (el) {
+          el.addEventListener('click', function () {
+            openInfoDetail(INFO_ITEMS[+this.dataset.idx]);
+          });
+        });
+      }
+
+      function openInfoDetail(item) {
+        var sectionsHtml = item.sections.map(function (s) {
+          return '<div class="info-det-section">' +
+            '<div class="info-det-label">' + s.label + '</div>' +
+            '<div class="info-det-text">' + s.text + '</div>' +
+          '</div>';
+        }).join('');
+        infoDetailBody.innerHTML =
+          '<div class="info-det-header">' +
+            '<div class="info-det-header-title">' + item.title + '</div>' +
+          '</div>' +
+          '<div class="info-det-body">' + sectionsHtml + '</div>';
+        infoDetailScreen.classList.add('open');
+        infoDetailScreen.setAttribute('aria-hidden', 'false');
+        infoDetailBody.scrollTop = 0;
+      }
+
+      if (infoCard) {
+        infoCard.addEventListener('click', function (e) {
+          e.preventDefault();
+          renderInfoList();
+          infoListScreen.classList.add('open');
+          infoListScreen.setAttribute('aria-hidden', 'false');
+          infoListEl.scrollTop = 0;
+        });
+      }
+      infoListBack.addEventListener('click', function () {
+        infoListScreen.classList.remove('open');
+        infoListScreen.setAttribute('aria-hidden', 'true');
+      });
+      infoDetailBack.addEventListener('click', function () {
+        infoDetailScreen.classList.remove('open');
+        infoDetailScreen.setAttribute('aria-hidden', 'true');
+      });
+
+      // ── 參展廠商 ──
+      const EXHIBITORS = [
+        {
+          id: 'ex01', name: '台灣瑞麗醫療器材股份有限公司', category: 'X光機及相關耗材',
+          desc: '成立於2004年，Ray致力透過研發與整合，將牙科與醫療產業推向數位整合高峰。銷售遍及全球52個國家，並於台灣設立直營據點。首創RAYGuard平台，將IoT物聯網技術導入牙科專業設備，實時監控設備狀況防範問題發生。',
+          booth: 'A-101', link: 'https://raytaiwan.com', tag: '全部最低價',
+          products: [
+            { name: 'RayScan Alpha+ 錐狀射束CT', nameEn: 'RayScan Alpha+ CBCT', desc: '業界最高解析度CBCT系統，12×10cm超大掃描視野，搭載AI智能分析功能，提供清晰立體影像協助精準診斷。', link: 'https://raytaiwan.com', img: '1576091160550-2173dba999ef' },
+            { name: 'Ray-X 數位X光感測器', nameEn: 'Ray-X Digital Sensor', desc: '採用CMOS感光元件，感度高、輻射量低，影像即時呈現，多款尺寸堅固耐用適合高頻使用環境。', link: '', img: '1559757148-5c350d0d3c56' },
+            { name: 'RayScan α 口腔全景X光機', nameEn: 'RayScan α Panoramic Unit', desc: '智慧型全景X光機，支援全景、頭顱側位及局部X光多種模式，操作介面直覺，一機完成多種影像需求。', link: '', img: '1666214280557-f1b5022eb634' },
+          ]
+        },
+        {
+          id: 'ex02', name: '卡瓦格魯普股份有限公司', category: 'X光機及相關耗材',
+          desc: 'KaVo集團以超過110年的牙科技術研發經驗，提供業界最先進的數位影像解決方案。產品涵蓋全景X光、CBCT及口內感測器，廣受全球牙醫師信賴。',
+          booth: 'A-103', link: '', tag: '部分最低價',
+          products: [
+            { name: 'KaVo OP 3D Pro 錐狀射束CT', nameEn: 'KaVo OP 3D Pro CBCT', desc: '歐洲製造高精度CBCT，超低輻射劑量符合ALARA原則，支援全景、上顎竇及顳顎關節多種掃描模式。', link: '', img: '1584308666744-24d5c474f2ae' },
+            { name: 'KaVo GXS-700 數位感測器', nameEn: 'KaVo GXS-700 Digital Sensor', desc: '超薄圓角設計大幅提升患者舒適度，IP67防水等級，RVG技術確保每張影像品質一致。', link: '', img: '1582750433449-648ed127bb54' },
+            { name: 'KaVo OP 2D 數位全景機', nameEn: 'KaVo OP 2D Panoramic', desc: '清晰度卓越的數位全景X光機，操作簡便快速，自動曝光設定讓拍攝更精準省時。', link: '', img: '1666214280557-f1b5022eb634' },
+          ]
+        },
+        {
+          id: 'ex03', name: '眾醫生物科技股份有限公司', category: '植牙材料',
+          desc: 'Dentium是韓國知名植牙品牌，以領先的表面處理技術及多樣化的植牙系統聞名全球。在台灣深耕多年，提供完整的植牙解決方案及教育訓練資源，是台灣植牙市場的主力品牌之一。',
+          booth: 'B-201', link: '', tag: '部分最低價',
+          products: [
+            { name: 'Implantium 植體系統', nameEn: 'Implantium Implant System', desc: 'Dentium旗艦植牙系統，親水性SLA表面加速骨整合，適用多種骨質條件，全球累計超過400萬顆。', link: '', img: '1559757175-0eb30cd8c063' },
+            { name: 'SuperLine 植體', nameEn: 'SuperLine Implant', desc: '微型自攻設計植體，適合窄骨脊及即拔即植手術，豐富尺寸靈活應對各種臨床挑戰。', link: '', img: '1550159930-40066082a4fc' },
+            { name: 'Dentium 骨粉材料', nameEn: 'Dentium Bone Graft', desc: '高純度牛骨來源骨替代材料，顆粒尺寸精準，生物相容性佳，有效支撐骨再生引導膜空間。', link: '', img: '1629207789124-3068f24a71c4' },
+            { name: 'SQ 覆蓋義齒植體', nameEn: 'SQ Overdenture Implant', desc: '專為全口重建設計，搭配多種附著體選擇，讓患者快速恢復咀嚼功能與生活品質。', link: '', img: '1606811841689-23dfddce3e8b' },
+          ]
+        },
+        {
+          id: 'ex04', name: '亞特生醫有限公司', category: '植牙材料',
+          desc: '亞特生醫代理全球頂尖醫療器材品牌，專注於植牙、骨再生及軟組織修復材料。致力於提供台灣牙科醫師最優質的生醫材料選擇，並提供完整的臨床培訓課程。',
+          booth: 'B-203', link: '', tag: null,
+          products: [
+            { name: 'BioOss 骨替代材料', nameEn: 'BioOss Bone Substitute', desc: '廣受全球認可的天然牛骨礦化基質，具優異骨傳導性，引導新骨生長，用於植牙前骨增量手術。', link: '', img: '1629909615957-be38d31ad25a' },
+            { name: 'BioGide 再生膜', nameEn: 'BioGide Resorbable Membrane', desc: '天然膠原蛋白雙層可吸收再生膜，無需二次手術取膜，有效隔離軟組織並引導骨組織再生。', link: '', img: '1606811971618-4486d14f3f99' },
+            { name: 'Jason 膜', nameEn: 'Jason Resorbable Membrane', desc: '豬源膠原蛋白可吸收膜，高拉力強度，適用GBR及GTR手術，生物相容性優良。', link: '', img: '1573496359142-b8d87734a5a2' },
+          ]
+        },
+        {
+          id: 'ex05', name: '雅馳醫療器材股份有限公司', category: '治療椅',
+          desc: 'A-dec是美國知名牙科治療椅品牌，以其符合人體工學的設計及耐久品質著稱。每一張A-dec治療椅均在美國奧勒岡州工廠手工製造，品質嚴格把關，深受全球牙醫師喜愛。',
+          booth: 'C-101', link: '', tag: '全部最低價',
+          products: [
+            { name: 'A-dec 500 治療椅組', nameEn: 'A-dec 500 Dental Chair', desc: '美國手工打造旗艦治療椅，六種移動軸設計確保最佳工作姿勢，可選配自動水路清潔及消毒系統。', link: '', img: '1629909615957-be38d31ad25a' },
+            { name: 'A-dec LED 無影燈', nameEn: 'A-dec LED Light', desc: '高演色性LED照明，還原真實牙齒色調，三段色溫可調，有效降低長時間診療的視覺疲勞。', link: '', img: '1573496359142-b8d87734a5a2' },
+            { name: 'A-dec 300 助理椅', nameEn: 'A-dec 300 Assistant Stool', desc: '符合人體工學的助理座椅，可調整式腰靠與腳踏，協助助理維持正確工作姿勢避免職業傷害。', link: '', img: '1537368910025-700350fe46c7' },
+          ]
+        },
+        {
+          id: 'ex06', name: '美商登士柏西諾德股份有限公司台灣分公司', category: '矯正類',
+          desc: 'Dentsply Sirona是全球最大的牙科器材公司，產品線涵蓋矯正、根管、修復、影像及教育訓練。在台灣擁有完整的服務團隊，持續推進牙科數位化進程。',
+          booth: 'D-101', link: '', tag: '部分最低價',
+          products: [
+            { name: 'Ormco Damon Q 自鎖托槽', nameEn: 'Ormco Damon Q Self-Ligating Bracket', desc: 'Damon系統低摩擦力自鎖設計可縮短療程，無需拔牙率高，患者舒適度優於傳統托槽。', link: '', img: '1609840114035-3c981b782dfe' },
+            { name: 'SureSmile 數位矯正系統', nameEn: 'SureSmile Digital Orthodontics', desc: '結合口掃、CBCT與AI設計的數位矯正平台，弓線由機器人精準彎製，提升矯正精準度並縮短療程。', link: '', img: '1600012953056-23571a4ea0f5' },
+            { name: '矯正彈性弓線材料組', nameEn: 'Orthodontic Archwire Set', desc: '多種規格不鏽鋼、鎳鈦及TMA弓線，滿足各階段矯正需求。', link: '', img: '1607990283906-db75e2694a04' },
+            { name: 'Insignia 客製化矯正系統', nameEn: 'Insignia Custom Braces', desc: '利用3D軟體為每位患者量身設計托槽位置與弓線，大幅提升矯正效率，縮短複診次數。', link: '', img: '1516549655169-df83a0774514' },
+          ]
+        },
+        {
+          id: 'ex07', name: '台灣雷博股份有限公司', category: '口腔雷射',
+          desc: '台灣雷博專注於口腔雷射設備的研發與推廣，代理全球頂尖雷射品牌，並提供完整的教育訓練計畫，協助臨床醫師掌握雷射治療技術，提升診療品質。',
+          booth: 'E-201', link: '', tag: null,
+          products: [
+            { name: 'Er:YAG 硬組織雷射', nameEn: 'Er:YAG Hard Tissue Laser', desc: '2940nm波長，可精準去除蛀牙組織不產熱，適用窩洞製備、敏感牙治療及根管殺菌。', link: '', img: '1559757175-0eb30cd8c063' },
+            { name: 'Diode 軟組織雷射', nameEn: 'Diode Soft Tissue Laser', desc: '波長810nm，適用牙齦整形、去除色素、舌繫帶切除等軟組織手術，止血效果佳。', link: '', img: '1566753323558-173dcaa19813' },
+            { name: 'CO2 雷射治療系統', nameEn: 'CO2 Dental Laser System', desc: '高能量CO2雷射，適用口腔黏膜病灶切除與口腔癌前病變處理，切割精準出血少術後癒合快。', link: '', img: '1629207789124-3068f24a71c4' },
+          ]
+        },
+        {
+          id: 'ex08', name: '路道克醫療器材有限公司', category: '放大鏡',
+          desc: '專業製造牙科放大鏡與頭燈，採用德國蔡司光學鏡片，確保最高光學品質。客製化訂製服務讓每位醫師都能擁有最適合的放大倍率與瞳距設定，大幅改善工作姿勢。',
+          booth: 'F-101', link: '', tag: '全部最低價',
+          products: [
+            { name: '3.5x Galilean 放大鏡', nameEn: '3.5x Galilean Loupes', desc: '德國蔡司光學鏡片，重量僅68g，客製化瞳距與工作距離，改善工作姿勢。', link: '', img: '1516549655169-df83a0774514' },
+            { name: '5.0x Prismatic 放大鏡', nameEn: '5.0x Prismatic Loupes', desc: '高倍率稜鏡式光學系統，適合根管及顯微手術，附帶TTL前置鏡框輕巧舒適。', link: '', img: '1622253692010-333f2da6031d' },
+            { name: 'LED 頭燈系統', nameEn: 'LED Headlight System', desc: '10,000流明超亮LED頭燈，色溫5500K接近自然光，電池連續使用8小時。', link: '', img: '1612349317150-e413f6a5b16d' },
+          ]
+        },
+        {
+          id: 'ex09', name: '義齒創新科技有限公司', category: '假牙材料',
+          desc: '義齒創新科技引進最新一代口腔掃描儀及CAD/CAM義齒設計加工設備，提供牙技所全套數位化工作流程解決方案，大幅提升假牙製作效率與精度，縮短交件時間。',
+          booth: 'G-201', link: '', tag: '部分最低價',
+          products: [
+            { name: 'Zirconia 全瓷牙冠', nameEn: 'Zirconia All-Ceramic Crown', desc: '5Y-TZP高強度氧化鋯全瓷冠，抗折強度超過1200MPa，透光性接近天然牙，適合後牙全冠修復。', link: '', img: '1550159930-40066082a4fc' },
+            { name: 'iTero Element 5D 口腔掃描儀', nameEn: 'iTero Element 5D Intraoral Scanner', desc: '配備近紅外線齲齒偵測技術，掃描同時即時分析鄰接面齲齒，AI智能輔助提升診斷效率。', link: '', img: '1612531385446-f7e6d131e1d0' },
+            { name: 'PMMA 高透度暫時冠', nameEn: 'PMMA Temporary Crown', desc: '生物相容性PMMA材料，色彩仿真度高，高光澤表面易於拋光，適合長期暫時冠修復。', link: '', img: '1629207789124-3068f24a71c4' },
+            { name: 'Emax 二矽酸鋰陶瓷', nameEn: 'Emax Lithium Disilicate', desc: '高美觀全瓷材料，壓注方式賦予卓越強度，適用薄型貼片、全冠及三單位橋體修復。', link: '', img: '1584308666744-24d5c474f2ae' },
+          ]
+        },
+        {
+          id: 'ex10', name: '台灣飛利浦股份有限公司', category: '口衛產品',
+          desc: '飛利浦台灣長期深耕口腔衛生市場，Sonicare系列電動牙刷以高頻振動科技享譽全球。提供從個人口腔護理到診所美白療程的完整產品線，深受消費者及牙醫師推薦。',
+          booth: 'H-101', link: 'https://www.philips.com.tw', tag: '全部最低價',
+          products: [
+            { name: 'Sonicare DiamondClean 9900', nameEn: 'Sonicare DiamondClean 9900', desc: 'AI感測科技即時分析刷牙力道與頻率，自動調整至最佳刷牙模式，連接APP提供個人化口腔健康報告。', link: 'https://www.philips.com.tw', img: '1606811841689-23dfddce3e8b' },
+            { name: 'AirFloss Ultra 沖牙機', nameEn: 'AirFloss Ultra', desc: '高速空氣與液滴組合技術，有效清潔牙縫與牙齦溝，比傳統牙線快6倍，適合牙套或植牙患者。', link: 'https://www.philips.com.tw', img: '1584308666744-24d5c474f2ae' },
+            { name: 'Zoom! WhiteSpeed 美白系統', nameEn: 'Zoom! WhiteSpeed Whitening', desc: '診所專用LED藍光美白系統，45分鐘有效提升8個色階，低敏感配方讓患者舒適度大幅提升。', link: 'https://www.philips.com.tw', img: '1559757148-5c350d0d3c56' },
+            { name: '飛利浦漱口水系列', nameEn: 'Philips Mouthwash Series', desc: '含氟強化琺瑯質配方，提供抗菌、清新、美白等多種選擇，每日使用助維持口腔健康。', link: '', img: '1550159930-40066082a4fc' },
+          ]
+        },
+        {
+          id: 'ex11', name: '蔡司光學顯微鏡事業部', category: '顯微鏡',
+          desc: 'ZEISS是全球光學儀器領導品牌，牙科顯微鏡系列以其超高解析度與舒適的人體工學設計著稱，協助臨床醫師進行精密的根管治療、顯微手術及美容牙科治療。',
+          booth: 'I-101', link: '', tag: '部分最低價',
+          products: [
+            { name: 'ZEISS EXTARO 300 口腔顯微鏡', nameEn: 'ZEISS EXTARO 300 Dental Microscope', desc: '全球醫療一線品牌，高達32倍光學放大，apochromatic物鏡消色差，搭配4K攝像頭完整影像記錄。', link: '', img: '1516549655169-df83a0774514' },
+            { name: 'ZEISS PROergo 電動顯微鏡', nameEn: 'ZEISS PROergo Motorized Microscope', desc: '電動化XY平台及自動變焦，無需手動調整即可追蹤治療區域，觸控螢幕一鍵切換設定。', link: '', img: '1576091160550-2173dba999ef' },
+            { name: 'ZEISS 螢光輔助模組', nameEn: 'ZEISS Fluorescence Module', desc: '利用螢光技術辨識口腔癌前病變組織，早期診斷輔助工具，提升臨床診斷的準確率與信心。', link: '', img: '1566753323558-173dcaa19813' },
+          ]
+        },
+        {
+          id: 'ex12', name: '捷德醫療器材股份有限公司', category: '手機',
+          desc: '捷德醫療專精牙科手機及動力系統，代理多項國際知名品牌。提供高速手機、低速手機、外科馬達及植牙設備，並提供原廠維修及保固服務，是台灣牙科手機市場的重要代理商。',
+          booth: 'J-101', link: '', tag: null,
+          products: [
+            { name: 'KaVo Tornado 高速手機', nameEn: 'KaVo Tornado High-Speed Handpiece', desc: '德國工藝製造，轉速450,000rpm，超低振動確保切割精準，四孔水霧設計減少熱傷害。', link: '', img: '1606811971618-4486d14f3f99' },
+            { name: 'W&H Tigon 馬達系統', nameEn: 'W&H Tigon Motor System', desc: '高扭力無刷馬達搭配LED照明手機頭，適用根管、外科及植牙多種應用，輕便靈活。', link: '', img: '1629909615957-be38d31ad25a' },
+            { name: '超音波潔牙機組', nameEn: 'Ultrasonic Scaler Kit', desc: '磁致伸縮超音波潔牙機，多種治療頭適用不同牙周治療情境，搭配LED照明提升視野。', link: '', img: '1550159930-40066082a4fc' },
+            { name: '電動牙髓活力測試儀', nameEn: 'Electric Pulp Tester', desc: '精準測定牙髓活力，提供數字化結果減少主觀判斷誤差，輕巧設計方便診間快速操作。', link: '', img: '1582750433449-648ed127bb54' },
+          ]
+        },
+        {
+          id: 'ex13', name: '台灣士卓曼集團股份有限公司', category: '植牙材料',
+          desc: 'Straumann是全球植牙材料領導品牌，源自瑞士，在台灣深耕超過25年。SLActive親水性表面技術創下業界最快骨整合速度，全系列產品在嚴格的臨床試驗下成功率超過99%。',
+          booth: 'B-301', link: 'https://www.straumann.com/taiwan', tag: '全部最低價',
+          products: [
+            { name: 'Straumann BLX 植體', nameEn: 'Straumann BLX Implant', desc: '錐形自攻設計適合即拔即植及軟骨質，SLActive親水表面創下業界最快骨整合速度，適應症廣泛成功率超過99%。', link: 'https://www.straumann.com/taiwan', img: '1559757175-0eb30cd8c063' },
+            { name: 'Straumann Pro Arch 全口重建', nameEn: 'Straumann Pro Arch Full-Arch', desc: '結合數位工作流程的全口重建方案，從診斷規劃到最終修復全程數位化，大幅縮短療程時間。', link: '', img: '1612531385446-f7e6d131e1d0' },
+            { name: 'Neodent GM 植體', nameEn: 'Neodent GM Implant', desc: 'Straumann集團旗下高性價比植牙品牌，conical connection設計確保密封性，廣受亞洲市場認可。', link: '', img: '1629207789124-3068f24a71c4' },
+            { name: 'Straumann CARES 數位方案', nameEn: 'Straumann CARES Digital', desc: '全數位化植牙工作流程，從口掃到假牙設計一氣呵成，配合Straumann植體系統確保精準結果。', link: '', img: '1584308666744-24d5c474f2ae' },
+          ]
+        },
+        {
+          id: 'ex14', name: '必麗精密牙科有限公司', category: '根管治療',
+          desc: '必麗精密牙科專注根管治療器械，代理全球頂尖根管銼針品牌，提供從器械到充填的完整根管治療解決方案，深受台灣根管治療專科醫師信賴。',
+          booth: 'K-101', link: '', tag: '部分最低價',
+          products: [
+            { name: 'ProTaper Gold 鎳鈦根管銼', nameEn: 'ProTaper Gold NiTi File', desc: '黃金合金配方提升彈性與抗疲勞性，progressive taper設計降低根管穿孔風險，是根管治療的黃金標準銼針。', link: '', img: '1566753323558-173dcaa19813' },
+            { name: 'WaveOne Gold 單根管銼', nameEn: 'WaveOne Gold Single File', desc: '單支銼針即可完成全部根管成型，往復式馬達配合使用，減少操作步驟縮短根管療程。', link: '', img: '1537368910025-700350fe46c7' },
+            { name: 'ProFile Vortex Blue 銼針', nameEn: 'ProFile Vortex Blue File', desc: '特殊熱處理技術賦予超高彈性，適用彎曲根管，藍色氧化層方便辨識損耗程度，提升臨床安全性。', link: '', img: '1629909615957-be38d31ad25a' },
+            { name: 'GuttaCore 充填系統', nameEn: 'GuttaCore Obturation', desc: '熱塑性牙膠核心充填系統，確保根管三維充填密合度，操作簡便適用複雜根管解剖形態。', link: '', img: '1606811971618-4486d14f3f99' },
+          ]
+        },
+        {
+          id: 'ex15', name: '多樂氏牙科耗材有限公司', category: '口衛產品',
+          desc: '多樂氏牙科耗材代理多個國際頂尖口腔衛生及修復材料品牌，提供牙科診所一站式耗材採購服務，以快速配送及完整售後支援著稱。',
+          booth: 'H-201', link: '', tag: null,
+          products: [
+            { name: '3M Scotchbond 黏接系統', nameEn: '3M Scotchbond Universal', desc: '萬用黏接劑，兼容自酸蝕、選擇性酸蝕及全酸蝕技術，適用複合樹脂、陶瓷及金屬修復，操作簡便。', link: '', img: '1550159930-40066082a4fc' },
+            { name: '3M Filtek Supreme 複合樹脂', nameEn: '3M Filtek Supreme Ultra', desc: '奈米填料複合樹脂，高度拋光持久性，色彩系統豐富，前後牙均適用，美觀與強度兼具。', link: '', img: '1584308666744-24d5c474f2ae' },
+            { name: 'GC Fuji IX GP 玻璃離子', nameEn: 'GC Fuji IX GP Glass Ionomer', desc: '高氟釋放傳統玻璃離子水門汀，與牙本質化學性黏合，適用乳牙修復與根管充填入口封填。', link: '', img: '1629207789124-3068f24a71c4' },
+          ]
+        },
+        {
+          id: 'ex16', name: '冠成醫療器材股份有限公司', category: '治療椅',
+          desc: '冠成醫療器材代理芬蘭Planmeca品牌治療台，提供從數位影像整合到CAD/CAM完整的數位牙科解決方案，以頂尖工業設計與穩定品質著稱。',
+          booth: 'C-201', link: '', tag: null,
+          products: [
+            { name: 'Planmeca Compact i5 治療台', nameEn: 'Planmeca Compact i5 Dental Unit', desc: '芬蘭製造的旗艦智慧牙科治療台，可整合口掃、X光及CAD/CAM於一體，數位牙科工作流程全整合。', link: '', img: '1629909615957-be38d31ad25a' },
+            { name: 'Planmeca ProX 治療椅', nameEn: 'Planmeca ProX Dental Chair', desc: '人體工學電動椅背，配備自動水路消毒功能，可客製化設定符合各科醫師的診療習慣。', link: '', img: '1573496359142-b8d87734a5a2' },
+            { name: 'Planmeca ProSensor HD', nameEn: 'Planmeca ProSensor HD Sensor', desc: '業界最高解析度口內感測器之一，超薄圓弧設計，一次曝光捕捉完整細節，適合各科精密診斷。', link: '', img: '1582750433449-648ed127bb54' },
+          ]
+        },
+        {
+          id: 'ex17', name: '禎樺生物科技有限公司', category: '植牙材料',
+          desc: '禎樺生物科技代理韓國Osstem植牙系統，以高性價比及完整的教育訓練體系在台灣快速成長，是全球銷售量排名前三的植牙品牌在台灣的總代理。',
+          booth: 'B-401', link: '', tag: null,
+          products: [
+            { name: 'Osstem TSIII SA 植體', nameEn: 'Osstem TSIII SA Implant', desc: '韓國Osstem旗艦植體，SA氧化鋁噴砂酸蝕表面，骨整合快速，全球臨床案例超過3000萬顆。', link: '', img: '1559757175-0eb30cd8c063' },
+            { name: 'Osstem US 覆蓋義齒植體', nameEn: 'Osstem US Overdenture', desc: '覆蓋義齒專用植體，多種附著體系統提供固定與可摘義齒解決方案，改善全口無牙患者生活品質。', link: '', img: '1550159930-40066082a4fc' },
+            { name: 'Osstem 骨移植材料', nameEn: 'Osstem Bone Graft', desc: '韓國製造高品質骨替代材料，顆粒均一，具良好骨傳導性，完整GBR材料組合適合各種骨增量手術。', link: '', img: '1606811841689-23dfddce3e8b' },
+          ]
+        },
+        {
+          id: 'ex18', name: '展彤實業股份有限公司', category: '矯正類',
+          desc: '展彤實業代理3M Unitek及多個國際矯正品牌，提供完整的矯正材料解決方案，長期深耕台灣矯正市場，以完整的服務體系及準時配送廣受矯正科醫師信賴。',
+          booth: 'D-201', link: '', tag: null,
+          products: [
+            { name: '3M Clarity Advanced 陶瓷托槽', nameEn: '3M Clarity Advanced Ceramic Bracket', desc: '高透明度陶瓷托槽，美觀度接近隱形，低摩擦係數設計縮短矯正時間，Roth及MBT處方均有。', link: '', img: '1609840114035-3c981b782dfe' },
+            { name: '3M Unitek 不鏽鋼托槽組', nameEn: '3M Unitek Metal Bracket', desc: '高品質不鏽鋼托槽，精準slot尺寸確保弓線控制精準，附底板設計增強黏接強度。', link: '', img: '1600012953056-23571a4ea0f5' },
+            { name: 'GAC 矯正彈性鏈', nameEn: 'GAC Power Chain', desc: '多種尺寸與間距選擇，高彈力持久不退色，適用關閉拔牙空間、齒列排列及旋轉控制。', link: '', img: '1607990283906-db75e2694a04' },
+            { name: 'TP Orthodontics 弓線', nameEn: 'TP Orthodontics Archwire', desc: '鎳鈦及不鏽鋼預成弓線，尺寸與形狀選擇豐富，品質穩定一致，美國製造品質保證。', link: '', img: '1516549655169-df83a0774514' },
+          ]
+        },
+        {
+          id: 'ex19', name: '維亞醫療器材有限公司', category: '假牙材料',
+          desc: '維亞醫療器材代理德國VITA全系列陶瓷材料，為台灣牙技所提供最完整的陶瓷材料解決方案，專業技術支援團隊協助技師掌握最新陶瓷工法。',
+          booth: 'G-301', link: '', tag: '部分最低價',
+          products: [
+            { name: 'VITA Suprinity 玻璃陶瓷', nameEn: 'VITA Suprinity Glass Ceramic', desc: '鋯石強化玻璃陶瓷，強度700MPa兼具高透明度，可壓注或CAD/CAM研磨，貼片、冠及嵌體均適用。', link: '', img: '1550159930-40066082a4fc' },
+            { name: 'VITA VM 9 飾瓷材料', nameEn: 'VITA VM 9 Veneering Ceramic', desc: '世界標準飾面陶瓷，極廣泛色彩體系，分層塗瓷技術成熟，是牙技師最信賴的飾瓷系統之一。', link: '', img: '1584308666744-24d5c474f2ae' },
+            { name: 'VITA ENAMIC 混合陶瓷', nameEn: 'VITA ENAMIC Hybrid Ceramic', desc: '獨特的雙重網狀結構，融合陶瓷的剛性與樹脂的彈性，適合CAD/CAM研磨，邊緣密合度卓越。', link: '', img: '1582750433449-648ed127bb54' },
+          ]
+        },
+        {
+          id: 'ex20', name: '長亨醫療儀器有限公司', category: 'X光機及相關耗材',
+          desc: '長亨醫療儀器代理韓國Vatech全系列數位口腔影像設備，以最高的影像品質與AI輔助診斷功能，協助台灣牙科診所邁向全數位化診斷時代。',
+          booth: 'A-201', link: '', tag: null,
+          products: [
+            { name: 'Vatech EzSensor HD 感測器', nameEn: 'Vatech EzSensor HD Digital Sensor', desc: '高解析度1200線對CMOS感測器，無線傳輸設計免除連線困擾，輕薄圓角造型大幅提升拍攝舒適度。', link: '', img: '1559757148-5c350d0d3c56' },
+            { name: 'Vatech PaX-i3D Super CBCT', nameEn: 'Vatech PaX-i3D Super CBCT', desc: '高解析度CBCT，搭載Smart insight軟體自動偵測病灶，AI輔助診斷根尖炎、牙周骨質吸收等病症。', link: 'https://vatech.com', img: '1576091160550-2173dba999ef' },
+            { name: 'Vatech EzRay Air W 攜帶式X光機', nameEn: 'Vatech EzRay Air W Portable', desc: '輕型無線口內X光機，重量僅2.3kg，無需安裝直接移動使用，適合巡迴診療及行動牙科服務。', link: '', img: '1666214280557-f1b5022eb634' },
+          ]
+        },
+      ];
+
+      const EXHIBITOR_CATS = (function () {
+        var order = ['all', 'X光機及相關耗材', '假牙材料', '口腔雷射', '口衛產品', '手機', '放大鏡', '根管治療', '植牙材料', '治療椅', '矯正類', '美白產品', '裝修', '金融', '顯微鏡'];
+        return order.map(function (cat) {
+          var count = cat === 'all' ? EXHIBITORS.length : EXHIBITORS.filter(function (ex) { return ex.category === cat; }).length;
+          return { name: cat, count: count };
+        });
+      })();
+
+      var favExhibitors = new Set();
+      try { favExhibitors = new Set(JSON.parse(localStorage.getItem('tda_fav_exhibitors') || '[]')); } catch (e) { favExhibitors = new Set(); }
+      function saveFavExhibitors() {
+        try { localStorage.setItem('tda_fav_exhibitors', JSON.stringify(Array.from(favExhibitors))); } catch (e) {}
+      }
+
+      const exhibitorCard      = document.getElementById('exhibitorCard');
+      const exhibitorCatScreen = document.getElementById('exhibitorCatScreen');
+      const exhibitorCatBack   = document.getElementById('exhibitorCatBack');
+      const exhibitorCatList   = document.getElementById('exhibitorCatList');
+      const exhibitorListScreen= document.getElementById('exhibitorListScreen');
+      const exhibitorListBack  = document.getElementById('exhibitorListBack');
+      const exhibitorListTitle = document.getElementById('exhibitorListTitle');
+      const exhibitorListEl    = document.getElementById('exhibitorList');
+      const exhSearch          = document.getElementById('exhSearch');
+      const exhFilterBar       = document.getElementById('exhFilterBar');
+      const exhibitorDetailScreen = document.getElementById('exhibitorDetailScreen');
+      const exhibitorDetailBack   = document.getElementById('exhibitorDetailBack');
+      const exhibitorDetailBody   = document.getElementById('exhibitorDetailBody');
+
+      const dentalProdListScreen = document.getElementById('dentalProdListScreen');
+      const dentalProdListBack   = document.getElementById('dentalProdListBack');
+      const dentalProdListTitle  = document.getElementById('dentalProdListTitle');
+      const dentalProdListEl     = document.getElementById('dentalProdList');
+      const productDetailScreen  = document.getElementById('productDetailScreen');
+      const productDetailBack    = document.getElementById('productDetailBack');
+      const productDetailBody    = document.getElementById('productDetailBody');
+      const exhTabExhibitor      = document.getElementById('exhTabExhibitor');
+      const exhTabDental         = document.getElementById('exhTabDental');
+      const exhibitorCatHintText = document.getElementById('exhibitorCatHintText');
+
+      var exhMode = 'exhibitor';
+      var exhCurrentCat = 'all';
+      var exhCurrentTag = 'all';
+
+      function renderExhibitorCats() {
+        if (exhMode === 'dental') {
+          exhibitorCatHintText.textContent = '選擇分類查看牙科產品';
+        } else {
+          exhibitorCatHintText.textContent = '選擇分類查看參展廠商';
+        }
+        exhibitorCatList.innerHTML = EXHIBITOR_CATS.map(function (c) {
+          var count;
+          if (exhMode === 'dental') {
+            if (c.name === 'all') {
+              count = EXHIBITORS.reduce(function (sum, ex) { return sum + ex.products.length; }, 0);
+            } else {
+              count = EXHIBITORS.filter(function (ex) { return ex.category === c.name; })
+                .reduce(function (sum, ex) { return sum + ex.products.length; }, 0);
+            }
+          } else {
+            count = c.count;
+          }
+          return '<div class="exh-cat-item" data-cat="' + c.name + '">' +
+            '<span class="exh-cat-name">' + (c.name === 'all' ? 'all' : c.name) + '</span>' +
+            '<span class="exh-cat-count">(' + count + ')</span>' +
+            '<span class="exh-cat-arrow">›</span>' +
+          '</div>';
+        }).join('');
+        exhibitorCatList.querySelectorAll('.exh-cat-item').forEach(function (item) {
+          item.addEventListener('click', function () {
+            var cat = this.dataset.cat;
+            if (exhMode === 'dental') {
+              dentalProdListTitle.textContent = cat === 'all' ? '全部產品' : cat;
+              renderDentalProdList(cat);
+              dentalProdListScreen.classList.add('open');
+              dentalProdListScreen.setAttribute('aria-hidden', 'false');
+              dentalProdListScreen.querySelector('.scroll-area').scrollTop = 0;
+            } else {
+              exhCurrentCat = cat;
+              exhCurrentTag = 'all';
+              if (exhSearch) exhSearch.value = '';
+              exhFilterBar.querySelectorAll('.exh-chip').forEach(function (c) { c.classList.remove('active'); });
+              exhFilterBar.querySelector('[data-tag="all"]').classList.add('active');
+              exhibitorListTitle.textContent = exhCurrentCat === 'all' ? '所有廠商' : exhCurrentCat;
+              renderExhibitorList();
+              exhibitorListScreen.classList.add('open');
+              exhibitorListScreen.setAttribute('aria-hidden', 'false');
+              exhibitorListScreen.querySelector('.scroll-area').scrollTop = 0;
+            }
+          });
+        });
+      }
+
+      function renderDentalProdList(cat) {
+        var items = [];
+        EXHIBITORS.forEach(function (ex) {
+          if (cat !== 'all' && ex.category !== cat) return;
+          ex.products.forEach(function (p) {
+            items.push({ p: p, ex: ex });
+          });
+        });
+        if (!items.length) {
+          dentalProdListEl.innerHTML = '<div class="pg-empty">此分類暫無產品</div>';
+          return;
+        }
+        dentalProdListEl.innerHTML = '';
+        items.forEach(function (item) {
+          var p = item.p, ex = item.ex;
+          var div = document.createElement('div');
+          div.className = 'dp-item';
+          div.innerHTML =
+            '<img class="dp-item-img" src="https://images.unsplash.com/photo-' + p.img + '?q=80&w=200&auto=format&fit=crop" alt="' + p.name + '" loading="lazy">' +
+            '<div class="dp-item-info">' +
+              '<div class="dp-item-name">' + p.name + '</div>' +
+              '<div class="dp-item-name-en">' + (p.nameEn || '') + '</div>' +
+              '<div class="dp-item-company">' + ex.name + '</div>' +
+            '</div>' +
+            '<span class="dp-item-arrow">›</span>';
+          div.addEventListener('click', (function (pp, eex) {
+            return function () { openProductDetail(pp, eex); };
+          })(p, ex));
+          dentalProdListEl.appendChild(div);
+        });
+      }
+
+      function openProductDetail(p, ex) {
+        var linkHtml = p.link
+          ? '<a class="pd-link-btn" href="' + p.link + '" target="_blank" rel="noopener">' +
+              '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>' +
+              '前往產品頁面' +
+            '</a>'
+          : '';
+        var otherProds = ex.products.filter(function (op) { return op.name !== p.name; });
+        var otherHtml = otherProds.length
+          ? '<div>' +
+              '<div class="pd-section-label">同廠商其他產品</div>' +
+              '<div id="pdOtherProds">' +
+                otherProds.map(function (op) {
+                  return '<div class="pd-other-prod" data-prod-name="' + op.name + '">' +
+                    '<img class="pd-other-prod-img" src="https://images.unsplash.com/photo-' + op.img + '?q=80&w=120&auto=format&fit=crop" alt="' + op.name + '" loading="lazy">' +
+                    '<span class="pd-other-prod-name">' + op.name + '</span>' +
+                    '<span style="color:var(--gray-text);font-size:18px;">›</span>' +
+                  '</div>';
+                }).join('') +
+              '</div>' +
+            '</div>'
+          : '';
+        var html =
+          '<img class="pd-hero-img" src="https://images.unsplash.com/photo-' + p.img + '?q=80&w=800&auto=format&fit=crop" alt="' + p.name + '" loading="lazy">' +
+          '<div class="pd-body">' +
+            '<div>' +
+              '<div class="pd-name">' + p.name + '</div>' +
+              '<div class="pd-name-en">' + (p.nameEn || '') + '</div>' +
+            '</div>' +
+            (p.desc ? '<div><div class="pd-section-label">產品介紹</div><div class="pd-desc">' + p.desc + '</div></div>' : '') +
+            (linkHtml ? '<div>' + linkHtml + '</div>' : '') +
+            '<div>' +
+              '<div class="pd-section-label">廠商</div>' +
+              '<div class="pd-company-card" id="pdCompanyCard">' +
+                '<div class="pd-company-logo">' + ex.name.slice(0, 2) + '</div>' +
+                '<div>' +
+                  '<div class="pd-company-name">' + ex.name + '</div>' +
+                  '<div class="pd-company-cat">' + ex.category + '&nbsp;｜&nbsp;展位 ' + ex.booth + '</div>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+            otherHtml +
+          '</div>';
+        productDetailBody.innerHTML = html;
+        productDetailBody.querySelector('#pdCompanyCard').addEventListener('click', function () {
+          openExhibitorDetail(ex);
+        });
+        if (otherProds.length) {
+          productDetailBody.querySelectorAll('.pd-other-prod').forEach(function (el) {
+            var prodName = el.dataset.prodName;
+            var targetProd = ex.products.filter(function (op) { return op.name === prodName; })[0];
+            if (targetProd) {
+              el.addEventListener('click', function () {
+                openProductDetail(targetProd, ex);
+              });
+            }
+          });
+        }
+        productDetailScreen.classList.add('open');
+        productDetailScreen.setAttribute('aria-hidden', 'false');
+        productDetailBody.scrollTop = 0;
+      }
+
+      function renderExhibitorList() {
+        var query = exhSearch ? exhSearch.value.trim() : '';
+        var list = EXHIBITORS;
+        if (exhCurrentCat !== 'all') list = list.filter(function (ex) { return ex.category === exhCurrentCat; });
+        if (exhCurrentTag !== 'all') list = list.filter(function (ex) { return ex.tag === exhCurrentTag; });
+        if (query) list = list.filter(function (ex) { return ex.name.indexOf(query) !== -1; });
+
+        if (!list.length) {
+          exhibitorListEl.innerHTML = '<div class="pg-empty">沒有符合的廠商</div>';
+          return;
+        }
+        exhibitorListEl.innerHTML = '';
+        list.forEach(function (ex) {
+          var div = document.createElement('div');
+          div.className = 'exh-card';
+          var tagHtml = ex.tag
+            ? '<span class="exh-tag-badge ' + (ex.tag === '全部最低價' ? 'exh-tag-gold' : 'exh-tag-silver') + '">' + ex.tag + '</span>'
+            : '';
+          var isStarred = favExhibitors.has(ex.id);
+          div.innerHTML =
+            '<div class="exh-card-body">' +
+              '<div class="exh-card-name">' + ex.name + '</div>' +
+              '<div class="exh-card-meta">展位：' + ex.booth + '</div>' +
+              tagHtml +
+            '</div>' +
+            '<button class="exh-star-btn' + (isStarred ? ' starred' : '') + '" data-ex-id="' + ex.id + '" aria-label="收藏">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>' +
+            '</button>';
+          div.querySelector('.exh-star-btn').addEventListener('click', function (e) {
+            e.stopPropagation();
+            var id = this.dataset.exId;
+            if (favExhibitors.has(id)) { favExhibitors.delete(id); this.classList.remove('starred'); }
+            else { favExhibitors.add(id); this.classList.add('starred'); }
+            saveFavExhibitors();
+          });
+          div.addEventListener('click', function () { openExhibitorDetail(ex); });
+          exhibitorListEl.appendChild(div);
+        });
+      }
+
+      function openExhibitorDetail(ex) {
+        var tagHtml = ex.tag
+          ? '<span class="exh-tag-badge ' + (ex.tag === '全部最低價' ? 'exh-tag-gold' : 'exh-tag-silver') + '" style="font-size:13px;padding:4px 12px;">' + ex.tag + '</span>'
+          : '';
+        var linkHtml = ex.link
+          ? '<a class="exh-det-link-btn" href="' + ex.link + '" target="_blank" rel="noopener">' +
+              '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>' +
+              '前往官方網站' +
+            '</a>'
+          : '';
+        var html =
+          '<div class="exh-det-header">' +
+            '<div class="exh-det-logo">' + ex.name.slice(0, 2) + '</div>' +
+            '<div class="exh-det-name">' + ex.name + '</div>' +
+            '<div class="exh-det-booth">展位：' + ex.booth + '&nbsp;｜&nbsp;' + ex.category + '</div>' +
+          '</div>' +
+          '<div class="exh-det-body">' +
+            (tagHtml ? '<div>' + tagHtml + '</div>' : '') +
+            '<div>' +
+              '<div class="exh-det-section-label">廠商簡介 About</div>' +
+              '<div class="exh-det-desc">' + ex.desc + '</div>' +
+            '</div>' +
+            (linkHtml ? '<div>' + linkHtml + '</div>' : '') +
+            '<div>' +
+              '<div class="exh-det-section-label">產品展示 Products</div>' +
+              '<div class="exh-product-grid" id="exhDetProductGrid">' +
+                ex.products.map(function (p) {
+                  return '<div class="exh-product-card" style="cursor:pointer;" data-prod-name="' + p.name + '">' +
+                    '<img class="exh-product-img" src="https://images.unsplash.com/photo-' + p.img + '?q=80&w=600&auto=format&fit=crop" alt="' + p.name + '" loading="lazy">' +
+                    '<div class="exh-product-name">' + p.name + '</div>' +
+                  '</div>';
+                }).join('') +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        exhibitorDetailBody.innerHTML = html;
+        exhibitorDetailBody.querySelectorAll('.exh-product-card').forEach(function (card) {
+          var prodName = card.dataset.prodName;
+          var prod = ex.products.filter(function (p) { return p.name === prodName; })[0];
+          if (prod) {
+            card.addEventListener('click', function () {
+              openProductDetail(prod, ex);
+            });
+          }
+        });
+        exhibitorDetailScreen.classList.add('open');
+        exhibitorDetailScreen.setAttribute('aria-hidden', 'false');
+        exhibitorDetailBody.scrollTop = 0;
+      }
+
+      if (exhibitorCard) {
+        exhibitorCard.addEventListener('click', function (e) {
+          e.preventDefault();
+          renderExhibitorCats();
+          exhibitorCatScreen.classList.add('open');
+          exhibitorCatScreen.setAttribute('aria-hidden', 'false');
+          exhibitorCatScreen.querySelector('.scroll-area').scrollTop = 0;
+        });
+      }
+
+      exhTabExhibitor.addEventListener('click', function () {
+        if (exhMode === 'exhibitor') return;
+        exhMode = 'exhibitor';
+        exhTabExhibitor.classList.add('active');
+        exhTabDental.classList.remove('active');
+        renderExhibitorCats();
+      });
+
+      exhTabDental.addEventListener('click', function () {
+        if (exhMode === 'dental') return;
+        exhMode = 'dental';
+        exhTabDental.classList.add('active');
+        exhTabExhibitor.classList.remove('active');
+        renderExhibitorCats();
+      });
+
+      exhibitorCatBack.addEventListener('click', function () {
+        exhibitorCatScreen.classList.remove('open');
+        exhibitorCatScreen.setAttribute('aria-hidden', 'true');
+      });
+
+      exhibitorListBack.addEventListener('click', function () {
+        exhibitorListScreen.classList.remove('open');
+        exhibitorListScreen.setAttribute('aria-hidden', 'true');
+      });
+
+      exhibitorDetailBack.addEventListener('click', function () {
+        exhibitorDetailScreen.classList.remove('open');
+        exhibitorDetailScreen.setAttribute('aria-hidden', 'true');
+      });
+
+      dentalProdListBack.addEventListener('click', function () {
+        dentalProdListScreen.classList.remove('open');
+        dentalProdListScreen.setAttribute('aria-hidden', 'true');
+      });
+
+      productDetailBack.addEventListener('click', function () {
+        productDetailScreen.classList.remove('open');
+        productDetailScreen.setAttribute('aria-hidden', 'true');
+      });
+
+      if (exhSearch) {
+        exhSearch.addEventListener('input', function () { renderExhibitorList(); });
+      }
+
+      if (exhFilterBar) {
+        exhFilterBar.querySelectorAll('.exh-chip').forEach(function (chip) {
+          chip.addEventListener('click', function () {
+            exhFilterBar.querySelectorAll('.exh-chip').forEach(function (c) { c.classList.remove('active'); });
+            this.classList.add('active');
+            exhCurrentTag = this.dataset.tag;
+            renderExhibitorList();
+          });
+        });
+      }
+
     })();
   </script>
 </body>
