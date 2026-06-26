@@ -5047,6 +5047,8 @@
           '</div>';
         productDetailBody.innerHTML = html;
         productDetailBody.querySelector('#pdCompanyCard').addEventListener('click', function () {
+          productDetailScreen.classList.remove('open');
+          productDetailScreen.setAttribute('aria-hidden', 'true');
           openExhibitorDetail(ex);
         });
         if (otherProds.length) {
